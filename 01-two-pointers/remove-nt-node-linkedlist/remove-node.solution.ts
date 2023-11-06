@@ -1,40 +1,31 @@
-import { SinglyLinkedList } from '../../ds/linked-list/singly-linked-list'
-export { SinglyLinkedList } from '../../ds/linked-list/singly-linked-list'
+import { SinglyLinkedListNode as LinkedListNode } from '../../ds/linked-list/singly-linked-list'
+export { SinglyLinkedListNode as LinkedListNode, SinglyLinkedList as LinkedList } from '../../ds/linked-list/singly-linked-list'
 
-export function removeNthNode<T>(linkedList: SinglyLinkedList<T>, k: number) {
-  if (linkedList.head == null || k <= 0) return linkedList
-  let startRef = linkedList.head
-  let endRef = linkedList.head
-  // Navigate to K-1 position, since we are starting from 1st
-  for (let i = 1; i < k; i += 1) {
-    if (endRef.next) {
-      endRef = endRef.next
-    } else {
-      // nothing to remove
-      return linkedList
-    }
+// [9, 8, 7, 6, 5, 4, 3, 2, 1]
+export function removeNthNodeFromEnd<T>(head: LinkedListNode<T> | null, n: number): LinkedListNode<T> | null {
+  if (head == null || n <= 0) return head
+  let fastPointer = head
+
+  for (let i = 1; i < n; i += 1) {
+    if (!fastPointer.next) return head // Handle case for n > length
+    fastPointer = fastPointer.next
   }
 
-  // For last position Navigation (kth position difference)
-  if (endRef.next) {
-    endRef = endRef.next
-  } else {
-    // If there is no position to navigate, remove the head
-    linkedList.head = startRef.next
-    startRef.next = null
-    return linkedList
+  const dumbNode = new LinkedListNode(head.value, head)
+  let slowPointer = dumbNode // start before the head
+
+  while (fastPointer.next && slowPointer.next) {
+    fastPointer = fastPointer.next
+    slowPointer = slowPointer.next
   }
 
-  while (endRef.next && startRef.next) {
-    endRef = endRef.next
-    startRef = startRef.next
-  }
-
-  const nextRef = startRef.next
+  const nextRef = slowPointer.next
   if (nextRef) {
-    startRef.next = nextRef.next || null
+    slowPointer.next = nextRef.next || null
     nextRef.next = null
   }
 
-  return linkedList
+  const startNode = dumbNode.next
+  dumbNode.next = null
+  return startNode
 }

@@ -4,6 +4,14 @@ export class SinglyLinkedListNode<T> {
     public next: SinglyLinkedListNode<T> | null = null
   ) {
   }
+
+  *[Symbol.iterator]() {
+    let node: SinglyLinkedListNode<T> | null = this
+    while (node) {
+      yield node.value
+      node = node.next
+    }
+  }
 }
 
 
