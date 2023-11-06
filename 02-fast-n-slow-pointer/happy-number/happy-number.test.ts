@@ -1,6 +1,6 @@
 import { isHappyNumber, isHappyNumberUsingSet } from "./happy-number.solution"
 
-describe('02 - Fast and Slow Pointer', () => {
+describe('02 - Fast and Slow Pointer / Happy Number', () => {
   test('valid in a single step', () => {
     expect(isHappyNumber(1)).toBe(true)
     expect(isHappyNumber(100)).toBe(true)
