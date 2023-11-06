@@ -1,6 +1,5 @@
 # Coding Practice in Javascript
 
-- Two pointers
-  - Valid Palindrome
-- Fast & Slow Pointers
-- Modified Binary Search
+## Quick Notes
+
+- Two Pointer (Fast and Slow) - for detecting cycles - Floyd’s cycle detection algorithm.
