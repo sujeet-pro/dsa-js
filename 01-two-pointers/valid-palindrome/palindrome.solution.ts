@@ -1,9 +1,4 @@
-/**
- *
- * @param {String} str: Input String To test
- * for palindrome.
- */
-export function validPalindrome(str) {
+export function validPalindrome(str: string): boolean {
   let i = 0
   let j = str.length - 1
   while (i < j) {
