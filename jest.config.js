@@ -2,6 +2,6 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  // silent: false,
+  silent: false,
   // verbose: true,
 }
