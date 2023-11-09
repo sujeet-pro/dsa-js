@@ -5,7 +5,7 @@ type Node<T = unknown> = SinglyLinkedListNode<T> | null
 function getMiddleNode<T>(node: Node<T>): Node<T> {
   if (!node) return node
   let low = node
-  let high: Node<T> = node.next
+  let high = node.next
   while (low.next && high?.next) {
     low = low.next
     high = high.next?.next
@@ -51,17 +51,21 @@ export function reOrderNode<T>(linkedList: SinglyLinkedList<T>): SinglyLinkedLis
   const middleNode = getMiddleNode(linkedList.head)
   if (!middleNode) return linkedList
   middleNode.next = reverseNode(middleNode.next)
-
   let startNode: Node<T> = linkedList.head
-  let nodeFromEnd: Node<T> = popNextNode(middleNode)
-
-  while (startNode && nodeFromEnd) {
-    const nextStartNode: Node<T> = startNode.next
-    startNode.next = nodeFromEnd
-    nodeFromEnd.next = nextStartNode
-    startNode = nextStartNode
-    nodeFromEnd = popNextNode(middleNode)
+  while (startNode?.next) {
+    console.log(`${linkedList.toString()}:start>${startNode?.value}:>mid:${middleNode.value}->${middleNode.next?.value}`)
+    const nodeFromEnd: Node<T> = popNextNode(middleNode)
+    if (nodeFromEnd) {
+      const nextStartNode: Node<T> = startNode.next
+      startNode.next = nodeFromEnd
+      nodeFromEnd.next = nextStartNode
+      startNode = nextStartNode
+    }
+    if (startNode) {
+      linkedList.tail = startNode
+    }
   }
+  console.log(`${linkedList.toString()}:start>${linkedList.tail?.value}:>mid:${middleNode.value}->${middleNode.next?.value}`)
   return linkedList
 
 }
