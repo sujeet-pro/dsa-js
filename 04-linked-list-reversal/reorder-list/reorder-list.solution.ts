@@ -53,7 +53,6 @@ export function reOrderNode<T>(linkedList: SinglyLinkedList<T>): SinglyLinkedLis
   middleNode.next = reverseNode(middleNode.next)
   let startNode: Node<T> = linkedList.head
   while (startNode?.next) {
-    console.log(`${linkedList.toString()}:start>${startNode?.value}:>mid:${middleNode.value}->${middleNode.next?.value}`)
     const nodeFromEnd: Node<T> = popNextNode(middleNode)
     if (nodeFromEnd) {
       const nextStartNode: Node<T> = startNode.next
@@ -65,7 +64,6 @@ export function reOrderNode<T>(linkedList: SinglyLinkedList<T>): SinglyLinkedLis
       linkedList.tail = startNode
     }
   }
-  console.log(`${linkedList.toString()}:start>${linkedList.tail?.value}:>mid:${middleNode.value}->${middleNode.next?.value}`)
   return linkedList
 
 }
