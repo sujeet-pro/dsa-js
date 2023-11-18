@@ -13,17 +13,12 @@ export class QueueUsingStack<T = unknown> {
 
   push(item: T): void {
     const tempStack = new Stack<T>()
-    let nextNode = this.#reversedStack.pop()
-    while (nextNode) {
-      tempStack.push(nextNode)
-      nextNode = this.#reversedStack.pop()
+    while (!this.#reversedStack.isEmpty) {
+      tempStack.push(this.#reversedStack.pop() as T)
     }
-
     this.#reversedStack.push(item)
-    nextNode = tempStack.pop()
-    while (nextNode) {
-      this.#reversedStack.push(nextNode)
-      nextNode = tempStack.pop()
+    while (!tempStack.isEmpty) {
+      this.#reversedStack.push(tempStack.pop() as T)
     }
   }
 
