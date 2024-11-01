@@ -1,5 +1,5 @@
-import { SinglyLinkedList, SinglyLinkedListNode } from "../../ds/linked-list/singly-linked-list"
-import { isLinkedListCyclic } from "./linked-list-cycle.solution"
+import { SinglyLinkedList, SinglyLinkedListNode } from '../../ds/linked-list/singly-linked-list'
+import { isLinkedListCyclic } from './linked-list-cycle.solution'
 
 describe('02 - Fast and Slow Pointer / Linked List Cycle', () => {
   test('No nodes', () => {

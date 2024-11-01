@@ -1,4 +1,4 @@
-import { stackRemoveDuplicateAdjacentInString } from "./remove-adjacent-duplicates.solution"
+import { stackRemoveDuplicateAdjacentInString } from './remove-adjacent-duplicates.solution'
 
 const testCases = [
   ['abc', 'abc'],
@@ -7,7 +7,7 @@ const testCases = [
   ['ggaabcdeb', 'bcdeb'],
   ['abbddaccaaabcd', 'abcd'],
   ['aabbccdd', ''],
-  ['aannkwwwkkkwna', 'kwkwna']
+  ['aannkwwwkkkwna', 'kwkwna'],
 ]
 
 describe('05 - Stacks / remove adjacent duplicates in string', () => {

@@ -33,12 +33,11 @@ function isCircularStartingAt(arr: number[], visited: boolean[], startingAt: num
   return slowPointerIdx === fastPointerIdx && slowPointerIdx !== slowPointerMover()
 }
 
-
 export function circularArrayLoop(arr: number[]): boolean {
   const visited = arr.map(() => false)
   for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i] === 0) continue;
-    if (visited[i]) continue;
+    if (arr[i] === 0) continue
+    if (visited[i]) continue
     const isCircular = isCircularStartingAt(arr, visited, i)
     if (isCircular) return true
   }

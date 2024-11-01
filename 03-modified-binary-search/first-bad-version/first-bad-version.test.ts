@@ -1,4 +1,4 @@
-import { API, getFirstVersion } from "./first-bad-version.solution"
+import { API, getFirstVersion } from './first-bad-version.solution'
 
 const testCases = [
   // n, firstBadVersion, attempt required
@@ -10,7 +10,7 @@ const testCases = [
   [13, 10, 3],
   [29, 10, 5],
   [40, 28, 5],
-  [23, 10, 5]
+  [23, 10, 5],
 ]
 describe('03 Modified Binary Search / First Bad Version', () => {
   test.each(testCases)('n=%i, fbv=%i, attempt=%i', (n, fbv, attempt) => {

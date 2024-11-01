@@ -1,4 +1,4 @@
-import { QueueUsingStack } from "./queue-using-stack.solution"
+import { QueueUsingStack } from './queue-using-stack.solution'
 
 type OperationType = 'push' | 'pop' | 'peek' | 'empty'
 type OperationInput = [Omit<OperationType, 'empty' | 'push'>, number | null] | ['push', number] | ['empty', boolean]
@@ -10,23 +10,45 @@ const testCases: OperationInput[][] = [
     ['push', 1],
     ['pop', 9],
     ['peek', 3],
-    ['empty', false]
+    ['empty', false],
   ],
   [
-    ["pop", null],
-    ["push", 10],
-    ["push", 6],
-    ["pop", 10],
-    ["empty", false],
-    ["peek", 6]
+    ['pop', null],
+    ['push', 10],
+    ['push', 6],
+    ['pop', 10],
+    ['empty', false],
+    ['peek', 6],
   ],
 
-  [["push", 1], ["push", 2], ["push", 3], ["peek", 1], ["pop", 1], ["pop", 2], ["pop", 3], ["empty", true]],
-  [["push", 1], ["push", 2], ["peek", 1], ["pop", 1], ["empty", false]],
-  [["push", 1], ["push", 2], ["peek", 1], ["pop", 1], ["pop", 2], ["empty", true], ["push", 3], ["empty", false]]
+  [
+    ['push', 1],
+    ['push', 2],
+    ['push', 3],
+    ['peek', 1],
+    ['pop', 1],
+    ['pop', 2],
+    ['pop', 3],
+    ['empty', true],
+  ],
+  [
+    ['push', 1],
+    ['push', 2],
+    ['peek', 1],
+    ['pop', 1],
+    ['empty', false],
+  ],
+  [
+    ['push', 1],
+    ['push', 2],
+    ['peek', 1],
+    ['pop', 1],
+    ['pop', 2],
+    ['empty', true],
+    ['push', 3],
+    ['empty', false],
+  ],
 ]
-
-
 
 describe('05 - Stacks / Queue using stacks', () => {
   test.each(testCases)('%j', (...operations) => {

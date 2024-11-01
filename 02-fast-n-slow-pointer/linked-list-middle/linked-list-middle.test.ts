@@ -1,5 +1,5 @@
-import { SinglyLinkedList } from "../../ds/linked-list/singly-linked-list"
-import { getLinkedlistMiddleElement } from "./linked-list-middle.solution"
+import { SinglyLinkedList } from '../../ds/linked-list/singly-linked-list'
+import { getLinkedlistMiddleElement } from './linked-list-middle.solution'
 
 describe('02 Fast & Slow Pointers - Linked List Middle', () => {
   test('Empty LinkedList', () => {
@@ -30,7 +30,7 @@ describe('02 Fast & Slow Pointers - Linked List Middle', () => {
       const input = new SinglyLinkedList(testCase.input)
       const res = getLinkedlistMiddleElement(input.head)
       expect(res).toBe(testCase.res)
-    });
+    })
   })
 
   test('Even Element in LinkedList', () => {
@@ -43,6 +43,6 @@ describe('02 Fast & Slow Pointers - Linked List Middle', () => {
       const input = new SinglyLinkedList(testCase.input)
       const res = getLinkedlistMiddleElement(input.head)
       expect(res).toBe(testCase.res)
-    });
+    })
   })
 })

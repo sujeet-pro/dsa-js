@@ -1,9 +1,8 @@
 export class SinglyLinkedListNode<T> {
   constructor(
     public value: T,
-    public next: SinglyLinkedListNode<T> | null = null
-  ) {
-  }
+    public next: SinglyLinkedListNode<T> | null = null,
+  ) {}
 
   *[Symbol.iterator]() {
     let node: SinglyLinkedListNode<T> | null = this
@@ -13,7 +12,6 @@ export class SinglyLinkedListNode<T> {
     }
   }
 }
-
 
 export class SinglyLinkedList<T> {
   head: SinglyLinkedListNode<T> | null = null
@@ -62,4 +60,3 @@ export class SinglyLinkedList<T> {
     return [...this].toString()
   }
 }
-

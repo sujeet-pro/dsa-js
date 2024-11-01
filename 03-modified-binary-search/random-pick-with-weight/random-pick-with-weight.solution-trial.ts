@@ -44,7 +44,6 @@ export function findIdx(arr: number[], target: number) {
   return -1
 }
 
-
 export function randomPickWithWeight(weights: number[]): number {
   const runningSumArr = runningSum(weights)
   const min = runningSumArr[0] as number

@@ -23,17 +23,13 @@ describe('Valid Palindrome', () => {
   })
 
   test('Random valids', () => {
-    [
-      'RACECAR'
-    ].forEach(str => {
+    ;['RACECAR'].forEach(str => {
       expect(validPalindrome(str)).toBe(true)
     })
   })
 
   test('Random inValids', () => {
-    [
-      'RACEACAR'
-    ].forEach(str => {
+    ;['RACEACAR'].forEach(str => {
       expect(validPalindrome(str)).toBe(false)
     })
   })

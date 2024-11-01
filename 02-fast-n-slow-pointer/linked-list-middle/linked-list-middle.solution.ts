@@ -1,4 +1,4 @@
-import { SinglyLinkedListNode } from "../../ds/linked-list/singly-linked-list";
+import { SinglyLinkedListNode } from '../../ds/linked-list/singly-linked-list'
 
 export function getLinkedlistMiddleElement<T>(head: SinglyLinkedListNode<T> | null): T | null {
   if (!head) return null

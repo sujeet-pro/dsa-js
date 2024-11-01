@@ -1,4 +1,4 @@
-import { SinglyLinkedList, SinglyLinkedListNode } from "../../ds/linked-list/singly-linked-list";
+import { SinglyLinkedList, SinglyLinkedListNode } from '../../ds/linked-list/singly-linked-list'
 
 function reverse<T>(head: SinglyLinkedListNode<T> | null, length: number) {
   if (!head) return head
@@ -37,7 +37,6 @@ export function reverseNodeInEvenPlace<T>(linkedList: SinglyLinkedList<T>) {
   let maxGroupItemCount = 1
   let groupLength = 1
   let prevGroupTail: SinglyLinkedListNode<T> | null = linkedList.head
-
 
   while (prevGroupTail?.next) {
     maxGroupItemCount += 1

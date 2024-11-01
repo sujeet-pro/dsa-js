@@ -1,4 +1,4 @@
-import { SinglyLinkedList, SinglyLinkedListNode } from "../../ds/linked-list/singly-linked-list";
+import { SinglyLinkedList, SinglyLinkedListNode } from '../../ds/linked-list/singly-linked-list'
 
 export function isLinkedListCyclic<T>(linkedList: SinglyLinkedList<T>): boolean {
   if (linkedList.head === null) return false

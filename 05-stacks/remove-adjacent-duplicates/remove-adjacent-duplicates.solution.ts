@@ -1,4 +1,4 @@
-import { Stack } from "../../ds/stack/stack"
+import { Stack } from '../../ds/stack/stack'
 
 export function stackRemoveDuplicateAdjacentInString(str: string) {
   const outputStack = new Stack<string>()

@@ -1,4 +1,4 @@
-import { circularArrayLoop } from "./circular-array-loop.solution"
+import { circularArrayLoop } from './circular-array-loop.solution'
 
 describe('02 Fast and Slow pointer - Circular Array Loop', () => {
   test('Empty', () => {
@@ -12,8 +12,6 @@ describe('02 Fast and Slow pointer - Circular Array Loop', () => {
     expect(circularArrayLoop([1, 3, -2, -4, 1])).toBe(true)
     expect(circularArrayLoop([1, 2, -3, 3, 4, 7, 1])).toBe(true)
     expect(circularArrayLoop([3, 3, 1, -1, 2])).toBe(true)
-
-
   })
 
   test('Non Circular Examples', () => {

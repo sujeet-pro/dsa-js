@@ -1,4 +1,4 @@
-import { SinglyLinkedList, SinglyLinkedListNode } from "../../ds/linked-list/singly-linked-list";
+import { SinglyLinkedList, SinglyLinkedListNode } from '../../ds/linked-list/singly-linked-list'
 
 type Node<T = unknown> = SinglyLinkedListNode<T> | null
 
@@ -35,7 +35,7 @@ export function reverseKGroups(linkedList: SinglyLinkedList<unknown>, k: number)
   while (node?.next && hasKItems(node.next, k)) {
     const prev = reverseKnodes(node.next, k)
 
-    const lastNodeOfReversedGroup: Node = node.next;
+    const lastNodeOfReversedGroup: Node = node.next
     node.next = prev
     node = lastNodeOfReversedGroup
   }

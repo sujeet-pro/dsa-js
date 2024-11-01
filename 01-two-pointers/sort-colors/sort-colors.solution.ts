@@ -1,4 +1,3 @@
-
 // type Tcolor = number | 0 (red)| 1 (white)| 2(blue)
 
 const RED = 0
@@ -22,12 +21,12 @@ export function sortColors(colors: number[]): number[] {
     switch (colors[white]) {
       case WHITE:
         white += 1
-        break;
+        break
       case RED:
         swap(colors, white, red)
         red += 1
         white += 1
-        break;
+        break
       case BLUE:
         swap(colors, white, blue)
         blue -= 1

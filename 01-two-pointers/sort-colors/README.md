@@ -7,4 +7,3 @@ Given an array, colors, which contains a combination of the following three elem
 - 2 (representing blue)
 
 Sort the array in place so that the elements of the same color are adjacent, with the colors in the order of red, white, and blue. The function should return the same array.
-

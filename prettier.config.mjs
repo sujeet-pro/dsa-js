@@ -4,6 +4,10 @@ const config = {
   tabWidth: 2,
   semi: false,
   singleQuote: true,
+  endOfLine: 'lf',
+  arrowParens: 'avoid',
+  bracketSpacing: true,
+  printWidth: 120,
 }
 
 export default config

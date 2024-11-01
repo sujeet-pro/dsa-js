@@ -1,4 +1,4 @@
-import { Stack } from "../../ds/stack/stack";
+import { Stack } from '../../ds/stack/stack'
 
 export class QueueUsingStack<T = unknown> {
   #reversedStack = new Stack<T>()
@@ -33,5 +33,4 @@ export class QueueUsingStack<T = unknown> {
   isEmpty(): boolean {
     return this.#reversedStack.isEmpty
   }
-
 }

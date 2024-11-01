@@ -13,21 +13,21 @@ export function binarySearchRotated(nums: readonly number[], target: number) {
     const high = nums[highIdx] as number
 
     if (mid === target) return midIdx
-    if (low <= mid) { // left is sorted
+    if (low <= mid) {
+      // left is sorted
       if (inRange(low, mid, target)) {
         highIdx = midIdx - 1
       } else {
         lowIdx = midIdx + 1
       }
-    } else { // right is sorted
+    } else {
+      // right is sorted
       if (inRange(mid, high, target)) {
         lowIdx = midIdx + 1
       } else {
         highIdx = midIdx - 1
       }
     }
-
   }
   return -1
 }
-

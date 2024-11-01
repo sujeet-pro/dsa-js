@@ -1,5 +1,8 @@
 import { SinglyLinkedListNode as LinkedListNode } from '../../ds/linked-list/singly-linked-list'
-export { SinglyLinkedListNode as LinkedListNode, SinglyLinkedList as LinkedList } from '../../ds/linked-list/singly-linked-list'
+export {
+  SinglyLinkedListNode as LinkedListNode,
+  SinglyLinkedList as LinkedList,
+} from '../../ds/linked-list/singly-linked-list'
 
 // [9, 8, 7, 6, 5, 4, 3, 2, 1]
 export function removeNthNodeFromEnd<T>(head: LinkedListNode<T> | null, n: number): LinkedListNode<T> | null {

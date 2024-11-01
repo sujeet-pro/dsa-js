@@ -1,4 +1,4 @@
-import { SinglyLinkedList, SinglyLinkedListNode } from "../../ds/linked-list/singly-linked-list";
+import { SinglyLinkedList, SinglyLinkedListNode } from '../../ds/linked-list/singly-linked-list'
 
 type Node<T = unknown> = SinglyLinkedListNode<T> | null
 
@@ -65,5 +65,4 @@ export function reOrderNode<T>(linkedList: SinglyLinkedList<T>): SinglyLinkedLis
     }
   }
   return linkedList
-
 }

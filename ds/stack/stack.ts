@@ -1,8 +1,8 @@
 class StackNode<T = unknown> {
   constructor(
     public value: T,
-    public next: StackNode<T> | null = null
-  ) { }
+    public next: StackNode<T> | null = null,
+  ) {}
 }
 
 export class Stack<T = unknown> {
@@ -35,7 +35,6 @@ export class Stack<T = unknown> {
     return node.value
   }
 
-
   get isEmpty(): boolean {
     return this.#size === 0
   }
@@ -49,9 +48,8 @@ export class Stack<T = unknown> {
   }
 }
 
-
 export class StackUsingArray<T = unknown> {
-  #stackList: T[] = [];
+  #stackList: T[] = []
 
   constructor(iter?: Iterable<T>) {
     if (iter) {
@@ -62,29 +60,28 @@ export class StackUsingArray<T = unknown> {
   }
 
   push(value: T): void {
-    this.#stackList.push(value);
+    this.#stackList.push(value)
   }
 
   pop(): T | null {
     if (this.isEmpty) {
-      return null;
+      return null
     }
-    return this.#stackList.pop() ?? null;
+    return this.#stackList.pop() ?? null
   }
 
   get isEmpty(): boolean {
-    return this.#stackList.length === 0;
+    return this.#stackList.length === 0
   }
 
   get top(): T | null {
     if (this.isEmpty) {
-      return null;
+      return null
     }
-    return this.#stackList[this.#stackList.length - 1] ?? null;
+    return this.#stackList[this.#stackList.length - 1] ?? null
   }
 
   get size(): number {
-    return this.#stackList.length;
+    return this.#stackList.length
   }
 }
-

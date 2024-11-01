@@ -1,4 +1,4 @@
-import { RandomPickWithWeight } from "./random-pick-with-weight.solution"
+import { RandomPickWithWeight } from './random-pick-with-weight.solution'
 
 const testCases = [
   [[1, 2, 3, 4, 5]],
@@ -19,21 +19,19 @@ function executeMultipleTimes(weights: readonly number[]) {
   const weightInstance = new RandomPickWithWeight(weights)
   for (let i = 0; i <= iteration; i += 1) {
     const resIdx = weightInstance.pickIndex()
-    resCounts[resIdx] += 1
+    resCounts[resIdx]! += 1
   }
 
   const maxWeight = Math.max(...weights)
-  const maxWeightAllIdx = weights.map((weight, idx) => weight === maxWeight ? idx : -1).filter(u => u !== -1)
+  const maxWeightAllIdx = weights.map((weight, idx) => (weight === maxWeight ? idx : -1)).filter(u => u !== -1)
   const maxResCount = Math.max(...resCounts)
-  const maxReturnAllIdx = resCounts.map((resCount, idx) => resCount === maxResCount ? idx : - 1).filter(u => u !== -1)
+  const maxReturnAllIdx = resCounts.map((resCount, idx) => (resCount === maxResCount ? idx : -1)).filter(u => u !== -1)
   return maxReturnAllIdx.some(idx => maxWeightAllIdx.includes(idx))
 }
 
 describe('03 Modified Binary Search / Random Weighted Picks', () => {
-  test.each(testCases)('weight=%j', (weights) => {
+  test.each(testCases)('weight=%j', weights => {
     const res = executeMultipleTimes(weights)
     expect(res).toBe(true)
   })
-
-
 })

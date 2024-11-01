@@ -1,4 +1,4 @@
-import { SinglyLinkedList, SinglyLinkedListNode } from "../../ds/linked-list/singly-linked-list";
+import { SinglyLinkedList, SinglyLinkedListNode } from '../../ds/linked-list/singly-linked-list'
 
 export function reverseLinkedList<T>(ll: SinglyLinkedList<T>): SinglyLinkedList<T> {
   if (!ll.head || !ll.head.next) return ll

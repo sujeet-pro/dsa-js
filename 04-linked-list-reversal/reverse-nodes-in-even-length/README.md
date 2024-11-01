@@ -9,4 +9,3 @@ In other words:
 - The 4th, 5th, and 6th nodes are assigned to the third group, and so on.
 
 Your task is to reverse the nodes in each group with an even number of nodes and return the head of the modified linked list.
-
