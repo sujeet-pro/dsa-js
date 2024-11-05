@@ -3,8 +3,8 @@ import { bestSum } from './best-sum'
 describe('bestSum', () => {
   test('returns the shortest combination of numbers that add up to the targetSum', () => {
     expect(bestSum(7, [5, 3, 4, 7])).toEqual([7])
-    expect(bestSum(8, [2, 3, 5])?.sort()).toEqual([3, 5].sort())
-    expect(bestSum(8, [1, 4, 5])).toEqual([4, 4])
+    expect(bestSum(8, [2, 3, 5])).toIncludeSameMembers([3, 5])
+    expect(bestSum(8, [1, 4, 5])).toIncludeSameMembers([4, 4])
   })
 
   test('returns null if no combination adds up to the targetSum', () => {
