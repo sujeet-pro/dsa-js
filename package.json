@@ -2,7 +2,7 @@
   "name": "coding-practice",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "type": "module",
   "scripts": {
     "test": "jest",
@@ -18,7 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.10.7",
+    "@types/node": "^22.10.10",
     "jest": "^29.7.0",
     "jest-extended": "^4.0.2",
     "prettier": "^3.4.2",
