@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "jest",
+    "coverage": "jest --coverage",
     "format": "prettier . --write --ignore-unknown"
   },
   "engineStrict": true,
