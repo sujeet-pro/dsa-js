@@ -20,10 +20,14 @@ export function evaluateExpressionTree(tree: EvaluateExpressionBinaryTree): numb
     const leftVal = evaluateExpressionTree(tree.left)
     const rightVal = evaluateExpressionTree(tree.right)
     switch (tree.value) {
-      case -1: return leftVal + rightVal
-      case -2: return leftVal - rightVal
-      case -3: return Math.trunc(leftVal / rightVal)
-      case -4: return leftVal * rightVal
+      case -1:
+        return leftVal + rightVal
+      case -2:
+        return leftVal - rightVal
+      case -3:
+        return Math.trunc(leftVal / rightVal)
+      case -4:
+        return leftVal * rightVal
     }
   }
   return -1

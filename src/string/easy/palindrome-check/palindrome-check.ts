@@ -3,11 +3,11 @@ export function isPalindrome(string: string) {
   let left = 0
   let right = string.length - 1
   while (right > left) {
-    if(string.charAt(left) !== string.charAt(right)) {
+    if (string.charAt(left) !== string.charAt(right)) {
       return false
-    } 
+    }
     left++
     right--
   }
-  return true;
+  return true
 }

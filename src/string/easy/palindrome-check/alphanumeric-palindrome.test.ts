@@ -1,10 +1,10 @@
-import { isAlphaNumericPalindrome } from "./alphanumeric-palindrome"
+import { isAlphaNumericPalindrome } from './alphanumeric-palindrome'
 
 describe('isAlphaNumericPalindrome', () => {
   test('with special chars', () => {
     expect(isAlphaNumericPalindrome('A man, a plan, a canal: Panama')).toBe(true)
   })
-  
+
   test('should return true for an empty string', () => {
     expect(isAlphaNumericPalindrome('')).toBe(true)
   })
