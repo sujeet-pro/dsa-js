@@ -1,13 +1,3 @@
 {
   "editor.formatOnSave": true,
-  "nodejs-testing.extensions": [
-    {
-      "extensions": ["mjs", "cjs", "js"],
-      "parameters": []
-    },
-    {
-      "extensions": ["mts", "cts", "ts"],
-      "parameters": ["--loader", "tsx"]
-    }
-  ]
 }
