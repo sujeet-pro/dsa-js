@@ -4,8 +4,7 @@
   "description": "Data Structures and Algorithms practice in TypeScript",
   "type": "module",
   "scripts": {
-    "test": "vitest",
-    "test:run": "vitest run",
+    "test": "vitest run",
     "test:watch": "vitest watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

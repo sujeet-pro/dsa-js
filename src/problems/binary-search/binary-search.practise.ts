@@ -17,7 +17,7 @@ export type BinarySearchFn = (nums: number[], target: number) => number
  * - Consider: How can you eliminate half of the search space with each comparison?
  * - Edge cases: empty array (though constraints say length >= 1), single element, target not found
  */
-export const binarySearch: BinarySearchFn = (nums, target) => {
+export const binarySearch1: BinarySearchFn = (nums, target) => {
   const startIdx = 0
   const endIdx = nums.length - 1
   // Below line will handle for lenght = 0, 1 (non-matching)
@@ -45,5 +45,18 @@ export const binarySearch2: BinarySearchFn = (nums, target) => {
     else if (midVal < target) startIdx = midIdx + 1
     else endIdx = midIdx - 1
   }
+  return -1
+}
+
+export const binarySearch3: BinarySearchFn = (nums, target) => {
+  let startIdx = 0
+  let endIdx = nums.length // [start, end) ==> Inclusive start Index, Exclusive End Index
+  do {
+    const midIdx = Math.floor(startIdx + (endIdx - startIdx) / 2)
+    const midVal = nums[midIdx]! // eslint-disable-line
+    if (midVal === target) return midIdx
+    if (midVal < target) startIdx = midIdx + 1
+    else endIdx = midIdx
+  } while (startIdx < endIdx)
   return -1
 }

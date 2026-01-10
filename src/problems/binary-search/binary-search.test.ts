@@ -1,12 +1,13 @@
 import { expect } from 'vitest'
 import { testImplementations } from '../../test-utils/test-implementations.ts'
 import { binarySearch as solutionImpl, type BinarySearchFn } from './binary-search.solution.ts'
-import { binarySearch as practiceImpl, binarySearch2 } from './binary-search.practise.ts'
+import { binarySearch1, binarySearch2, binarySearch3 } from './binary-search.practise.ts'
 
 const implementations = {
   solution: solutionImpl,
-  practice: practiceImpl,
+  practice1: binarySearch1,
   practice2: binarySearch2,
+  practice3: binarySearch3,
 }
 
 testImplementations<BinarySearchFn>('binarySearch', implementations, (testEach) => {
