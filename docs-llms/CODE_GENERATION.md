@@ -2,24 +2,19 @@
 
 This repository is dedicated to **Data Structures and Algorithms practice** with a focus on **performance** and **strict typing**. All generated code must adhere to these guidelines.
 
-## Problem Files vs Course Files
+---
 
-This repository has two types of code:
-
-### 1. Problem Files (`src/problems/<problem-name>/`)
+## Problem Files (`problems/<problem-name>/`)
 
 Generated via "Generate problem" command. Contains:
+
 - `<problem-name>.practise.ts` - Empty typed function for user to implement
 - `<problem-name>.solution.ts` - Heavily commented optimal solution
 - `<problem-name>.test.ts` - Exhaustive tests for both files
 
 See `docs-llms/QUESTION_GENERATION.md` for the complete problem generation workflow.
 
-### 2. Course Files (`src/course-*/`)
-
-Algorithm implementations from courses/tutorials. Contains:
-- `<algorithm-name>.ts` - Multiple implementations with same signature
-- `<algorithm-name>.test.ts` - Tests using `testImplementations` utility
+---
 
 ## Core Principles
 
@@ -28,32 +23,7 @@ Algorithm implementations from courses/tutorials. Contains:
 3. **Multiple Implementations**: Provide multiple approaches when applicable (brute force → optimized)
 4. **Educational Value**: Code should be readable and serve as learning material for revision
 
-## File Structure for Algorithm Implementations
-
-Each algorithm file must follow this structure:
-
-```typescript
-/**
- * Algorithm/Problem Name
- *
- * Problem Statement:
- * [Clear description of what the algorithm solves]
- *
- * Approach:
- * [Brief explanation of the approach used]
- *
- * Time Complexity: O(?)
- * Space Complexity: O(?)
- *
- * @param paramName - Description of parameter
- * @returns Description of return value
- */
-export type AlgorithmFn = (params: ParamTypes) => ReturnType
-
-export const algorithm1: AlgorithmFn = (params) => {
-  // Implementation
-}
-```
+---
 
 ## TypeScript Requirements
 
@@ -65,6 +35,32 @@ export const algorithm1: AlgorithmFn = (params) => {
 4. **NEVER** use `any` type - use `unknown` with type guards if necessary
 5. **NEVER** use implicit `any` from untyped parameters
 6. **NEVER** use type assertions (`as`) unless absolutely necessary and documented
+
+### Strict Compiler Options (Enforced)
+
+The repository uses the strictest TypeScript settings:
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true
+  }
+}
+```
+
+**Key implications:**
+
+- `noUncheckedIndexedAccess`: Array access like `arr[i]` returns `T | undefined`, requiring explicit checks
+- `exactOptionalPropertyTypes`: Optional properties must be explicitly `undefined` or omitted
+- `noPropertyAccessFromIndexSignature`: Must use bracket notation for index signature access
 
 ### Function Declaration Style
 
@@ -84,6 +80,26 @@ export function quickSort(arr: number[]): number[] {
 }
 ```
 
+### Handling Array Access with noUncheckedIndexedAccess
+
+```typescript
+// WRONG: nums[i] is number | undefined
+for (let i = 0; i < nums.length; i++) {
+  const sum = nums[i] + nums[i + 1] // Error: possibly undefined
+}
+
+// CORRECT: Use non-null assertion when bounds are guaranteed
+for (let i = 0; i < nums.length; i++) {
+  const num = nums[i]! // Safe: we know i is in bounds
+}
+
+// CORRECT: Use explicit check
+const first = nums[0]
+if (first !== undefined) {
+  // first is now number, not number | undefined
+}
+```
+
 ### Generic Types
 
 Use generics for reusable algorithms:
@@ -97,6 +113,8 @@ export const mergeSort: SortFn<number> = (arr, compare = (a, b) => a - b) => {
   // Implementation
 }
 ```
+
+---
 
 ## Performance Guidelines
 
@@ -133,6 +151,8 @@ const multiply2 = (n: number): number => n << 1
 const divide2 = (n: number): number => n >> 1
 ```
 
+---
+
 ## Multiple Implementations
 
 When solving a problem, provide implementations in order of optimization:
@@ -140,7 +160,7 @@ When solving a problem, provide implementations in order of optimization:
 ```typescript
 /**
  * Two Sum Problem
- * 
+ *
  * Given an array of integers and a target sum, return indices of two numbers
  * that add up to the target.
  */
@@ -175,6 +195,8 @@ export const twoSumHashMap: TwoSumFn = (nums, target) => {
 }
 ```
 
+---
+
 ## Naming Conventions
 
 ### Files
@@ -195,29 +217,33 @@ export const twoSumHashMap: TwoSumFn = (nums, target) => {
 - Use PascalCase with `Fn` suffix for function types: `TwoSumFn`, `BinarySearchFn`
 - Use descriptive names for complex types: `TreeNode`, `ListNode`, `GraphAdjList`
 
+---
+
 ## Common Data Structure Types
 
-Define reusable types in `src/types/` directory:
+Define reusable types in `types/` directory if needed:
 
 ```typescript
-// src/types/tree.ts
+// types/tree.ts
 export interface TreeNode<T = number> {
   val: T
   left: TreeNode<T> | null
   right: TreeNode<T> | null
 }
 
-// src/types/list.ts
+// types/list.ts
 export interface ListNode<T = number> {
   val: T
   next: ListNode<T> | null
 }
 
-// src/types/graph.ts
+// types/graph.ts
 export type AdjacencyList = Map<number, number[]>
 export type AdjacencyMatrix = number[][]
 export type EdgeList = [from: number, to: number, weight?: number][]
 ```
+
+---
 
 ## Error Handling
 
@@ -227,16 +253,59 @@ export type EdgeList = [from: number, to: number, weight?: number][]
 
 ```typescript
 export const binarySearch: BinarySearchFn = (arr, target) => {
-  if (arr.length === 0) return -1  // Handle edge case, don't throw
-  
+  if (arr.length === 0) return -1 // Handle edge case, don't throw
+
   // For truly invalid inputs, throw
   if (!Array.isArray(arr)) {
     throw new TypeError('Expected array as first argument')
   }
-  
+
   // Implementation...
 }
 ```
+
+---
+
+## Solution File Comment Style
+
+For `*.solution.ts` files in problem folders, use extensive commenting:
+
+```typescript
+/**
+ * Problem Name - Optimal Solution
+ *
+ * Approach: [Approach Name]
+ *
+ * Time Complexity: O(?) - [explanation]
+ * Space Complexity: O(?) - [explanation]
+ */
+export type ProblemFn = (/* params */) => ReturnType
+
+export const problemName: ProblemFn = (params) => {
+  // ============================================================
+  // STEP 1: [What this step does]
+  // ============================================================
+  // Why: [Explanation of why we do this]
+  // Example: With input [1,2,3], this step produces [...]
+  // [code]
+  // ============================================================
+  // STEP 2: [What this step does]
+  // ============================================================
+  // Trade-off: [Any trade-offs being made]
+  // Edge case: [How edge cases are handled here]
+  // [code]
+}
+```
+
+**Required Comments:**
+
+- Section headers with `===` dividers for major steps
+- "Why" explanations for non-obvious decisions
+- Examples showing transformations
+- Trade-off explanations
+- Edge case handling notes
+
+---
 
 ## Documentation in Code
 
@@ -265,55 +334,12 @@ Every implementation must include:
 export const maxSubarraySum: MaxSubarraySumFn = (nums) => {
   let maxSum = nums[0]!
   let currentSum = nums[0]!
-  
+
   for (let i = 1; i < nums.length; i++) {
     currentSum = Math.max(nums[i]!, currentSum + nums[i]!)
     maxSum = Math.max(maxSum, currentSum)
   }
-  
+
   return maxSum
 }
 ```
-
----
-
-## Solution File Comment Style
-
-For `*.solution.ts` files in problem folders, use extensive commenting:
-
-```typescript
-/**
- * Problem Name - Optimal Solution
- *
- * Approach: [Approach Name]
- *
- * Time Complexity: O(?) - [explanation]
- * Space Complexity: O(?) - [explanation]
- */
-export type ProblemFn = (/* params */) => ReturnType
-
-export const problemName: ProblemFn = (params) => {
-  // ============================================================
-  // STEP 1: [What this step does]
-  // ============================================================
-  // Why: [Explanation of why we do this]
-  // Example: With input [1,2,3], this step produces [...]
-
-  // [code]
-
-  // ============================================================
-  // STEP 2: [What this step does]
-  // ============================================================
-  // Trade-off: [Any trade-offs being made]
-  // Edge case: [How edge cases are handled here]
-
-  // [code]
-}
-```
-
-**Required Comments:**
-- Section headers with `===` dividers for major steps
-- "Why" explanations for non-obvious decisions
-- Examples showing transformations
-- Trade-off explanations
-- Edge case handling notes

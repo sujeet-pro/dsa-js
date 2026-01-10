@@ -7,6 +7,7 @@ This document provides the complete workflow for generating DSA problems. When t
 When the user's prompt contains **"Generate problem"** or **"Generate a problem"**, execute the complete problem generation workflow described below.
 
 **Example prompts that trigger this workflow:**
+
 - "Generate problem for Two Sum"
 - "Generate a problem for Binary Search"
 - "Generate problem: Merge Sort"
@@ -23,7 +24,7 @@ When triggered, you MUST:
 ### Generated File Structure
 
 ```
-src/problems/<problem-name>/
+problems/<problem-name>/
 ├── README.md                    # Complete problem documentation
 ├── <problem-name>.practise.ts   # Empty typed function for practice
 ├── <problem-name>.solution.ts   # Heavily commented optimal solution
@@ -33,8 +34,9 @@ src/problems/<problem-name>/
 ### Example: "Generate problem for Two Sum"
 
 Creates:
+
 ```
-src/problems/two-sum/
+problems/two-sum/
 ├── README.md
 ├── two-sum.practise.ts
 ├── two-sum.solution.ts
@@ -94,6 +96,7 @@ export const problemName: ProblemFn = (/* params */) => {
 ```
 
 **Requirements:**
+
 - Export the function type
 - Export a single function with the correct signature
 - Include a brief description referencing README.md
@@ -136,22 +139,19 @@ export const problemName: ProblemFn = (/* params */) => {
   // ============================================================
   // Why: [Explain why we do this]
   // Example: [Show what happens with sample input]
-
   // [code for step 1]
-
   // ============================================================
   // STEP 2: [Description of what this step does]
   // ============================================================
   // Why: [Explain why we do this]
   // Trade-off: [Explain any trade-offs made]
-
   // [code for step 2]
-
   // ... continue with heavily commented implementation
 }
 ```
 
 **Comment Requirements:**
+
 - Header with approach name and complexity
 - Key insight explanation
 - Step-by-step algorithm overview
@@ -172,10 +172,7 @@ import { expect } from 'vitest'
 import { testImplementations } from '../../test-utils/test-implementations.ts'
 
 // Import from solution file (verified working)
-import {
-  problemName as solutionImpl,
-  type ProblemFn,
-} from './problem-name.solution.ts'
+import { problemName as solutionImpl, type ProblemFn } from './problem-name.solution.ts'
 
 // Import from practice file (user's implementation)
 import { problemName as practiceImpl } from './problem-name.practise.ts'
@@ -191,7 +188,7 @@ testImplementations<ProblemFn>('problemName', implementations, (testEach) => {
   // ============================================================
   // BASIC FUNCTIONALITY
   // ============================================================
-  
+
   testEach('should handle basic case', (fn) => {
     expect(fn(/* basic input */)).toEqual(/* expected */)
   })
@@ -253,6 +250,7 @@ testImplementations<ProblemFn>('problemName', implementations, (testEach) => {
 ```
 
 **Test Requirements:**
+
 - Import type from solution file
 - Import both solution and practice implementations
 - Use `testImplementations` utility
@@ -268,12 +266,15 @@ testImplementations<ProblemFn>('problemName', implementations, (testEach) => {
 After generating all files, you MUST:
 
 ### 1. Run TypeScript Check
+
 ```bash
 npx tsc --noEmit
 ```
+
 Fix any type errors before proceeding.
 
 ### 2. Run Tests (Solution Only)
+
 First, temporarily modify the test file to only test the solution:
 
 ```typescript
@@ -284,16 +285,19 @@ const implementations = {
 ```
 
 Then run:
+
 ```bash
-npm test -- src/problems/<problem-name>/<problem-name>.test.ts
+npm test -- problems/<problem-name>/<problem-name>.test.ts
 ```
 
 ### 3. Verify All Tests Pass
+
 - If tests fail, fix the solution and/or test cases
 - Do not complete until all solution tests pass
 - This ensures both the solution is correct AND test cases are valid
 
 ### 4. Restore Practice Import
+
 Uncomment the practice import so user can test their implementation:
 
 ```typescript
@@ -303,6 +307,32 @@ const implementations = {
 }
 ```
 
+### 5. Update Root README (MANDATORY)
+
+After all tests pass, add the new problem to the root `/README.md` problems table:
+
+1. Open `/README.md`
+2. Find the "## Problems" section with the table
+3. Add a new row with:
+   - **#**: Increment from the last problem number
+   - **Problem**: `[Problem Name](problems/<problem-name>/)`
+   - **Difficulty**: Easy/Medium/Hard
+   - **Category**: Main category (e.g., Array, Hash Table, Searching)
+   - **Tags**: Key algorithmic tags
+4. Update the summary line with new counts
+
+**Example row to add:**
+
+```markdown
+| 4 | [Merge Intervals](problems/merge-intervals/) | Medium | Array, Sorting | intervals, sorting |
+```
+
+**Example summary update:**
+
+```markdown
+**Total**: 4 problems | **Easy**: 2 | **Medium**: 2
+```
+
 ---
 
 ## Research Requirements (MANDATORY)
@@ -310,18 +340,21 @@ const implementations = {
 Before generating any files, you MUST research:
 
 ### 1. Problem Research
+
 - Search LeetCode, HackerRank, GeeksforGeeks for the problem
 - Find the official difficulty rating
 - Identify companies that ask this question
 - Find similar/related problems
 
 ### 2. Solution Research
+
 - Review top-voted solutions and discussions
 - Identify ALL known approaches (not just optimal)
 - Find common mistakes from discussion threads
 - Note any tricky edge cases people mention
 
 ### 3. Test Case Research
+
 - Find edge cases that commonly trip people up
 - Check discussion forums for tricky inputs
 - Understand constraint boundaries for boundary tests
@@ -333,8 +366,8 @@ Before generating any files, you MUST research:
 ````markdown
 # [Problem Name]
 
-| Difficulty | Category | Tags | Companies |
-|------------|----------|------|-----------|
+| Difficulty         | Category   | Tags   | Companies   |
+| ------------------ | ---------- | ------ | ----------- |
 | [Easy/Medium/Hard] | [Category] | [tags] | [Companies] |
 
 **LeetCode**: [#. Problem Name](url)
@@ -347,26 +380,29 @@ Before generating any files, you MUST research:
 ## Constraints
 
 | Constraint | Value | Implication |
-|------------|-------|-------------|
-| | | |
+| ---------- | ----- | ----------- |
+|            |       |             |
 
 ## Examples
 
 ### Example 1: Basic Case
+
 ```
-Input: 
-Output: 
-Explanation: 
+Input:
+Output:
+Explanation:
 ```
 
 ### Example 2: [Description]
+
 ```
-Input: 
-Output: 
-Explanation: 
+Input:
+Output:
+Explanation:
 ```
 
 ### Edge Cases to Consider
+
 - [Edge case 1]
 - [Edge case 2]
 
@@ -399,10 +435,12 @@ Explanation:
 **Intuition**: [Why this approach makes sense as a starting point]
 
 **Algorithm**:
+
 1. [Step 1]
 2. [Step 2]
 
 **Complexity**:
+
 - Time: O(?) - [explanation]
 - Space: O(?) - [explanation]
 
@@ -415,12 +453,14 @@ Explanation:
 **Intuition**: [Key insight that enables this approach]
 
 **Algorithm**:
+
 1. [Step 1]
 2. [Step 2]
 
 **Why This Works**: [Detailed explanation]
 
 **Complexity**:
+
 - Time: O(?) - [explanation]
 - Space: O(?) - [explanation]
 
@@ -431,6 +471,7 @@ Explanation:
 ## Common Mistakes
 
 ### 1. [Mistake Name]
+
 ```typescript
 // WRONG
 [incorrect code]
@@ -442,20 +483,54 @@ Explanation:
 **Why**: [Explanation of the mistake]
 
 ### 2. [Mistake Name]
+
 [...]
+
+## Interview Derivation (REQUIRED for mathematical/generic solutions)
+
+When a problem has a mathematical or non-obvious optimal solution (e.g., √n jumping,
+mathematical formulas, specific constants), you MUST include this section explaining
+how to arrive at the solution during an interview.
+
+### How to Arrive at This Solution
+
+**This section answers: "How would I discover this approach in an interview?"**
+
+**Step 1: Start with Brute Force**
+[What's the naive approach and its complexity?]
+
+**Step 2: Identify the Bottleneck**
+[What's making the brute force slow?]
+
+**Step 3: Ask the Right Question**
+[What question leads to the insight?]
+
+**Step 4: Explore Trade-offs**
+[What trade-offs can we make? What if we had more/fewer resources?]
+
+**Step 5: Find the Balance Point**
+[How do we arrive at the optimal parameter/approach?]
+
+**Interview Tips**:
+
+- [Tip for communicating this thinking process]
+- [Common interviewer questions to expect]
+- [How to justify your approach]
 
 ## Follow-up Questions
 
 ### Q1: [Follow-up question]
+
 [Answer/approach]
 
 ### Q2: [Follow-up question]
+
 [Answer/approach]
 
 ## Related Problems
 
-| Problem | Relationship |
-|---------|--------------|
+| Problem              | Relationship     |
+| -------------------- | ---------------- |
 | [Problem Name](link) | [How it relates] |
 
 ## Key Takeaways
@@ -588,10 +663,7 @@ export const twoSum: TwoSumFn = (nums, target) => {
 ```typescript
 import { expect } from 'vitest'
 import { testImplementations } from '../../test-utils/test-implementations.ts'
-import {
-  twoSum as solutionImpl,
-  type TwoSumFn,
-} from './two-sum.solution.ts'
+import { twoSum as solutionImpl, type TwoSumFn } from './two-sum.solution.ts'
 import { twoSum as practiceImpl } from './two-sum.practise.ts'
 
 const implementations = {
@@ -703,6 +775,7 @@ testImplementations<TwoSumFn>('twoSum', implementations, (testEach) => {
 ## Rules for LLMs
 
 ### MUST Do
+
 1. **ALWAYS** research the problem before generating any files
 2. **ALWAYS** create all four files (README, practise, solution, test)
 3. **ALWAYS** run tests and verify solution passes before completing
@@ -710,8 +783,11 @@ testImplementations<TwoSumFn>('twoSum', implementations, (testEach) => {
 5. **ALWAYS** include 15-20+ test cases covering all categories
 6. **ALWAYS** export function type from both practise and solution files
 7. **ALWAYS** use `testImplementations` utility in test file
+8. **ALWAYS** update root README.md with link to new problem
+9. **ALWAYS** include "Interview Derivation" section in README when solution involves mathematical formulas, specific constants (like √n), or non-obvious optimal approaches
 
 ### MUST NOT Do
+
 1. **NEVER** skip the research step
 2. **NEVER** provide an incomplete file structure
 3. **NEVER** leave failing tests

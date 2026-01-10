@@ -1,8 +1,8 @@
 # Two Sum
 
-| Difficulty | Category | Tags | Companies |
-|------------|----------|------|-----------|
-| Easy | Array, Hash Table | array, hash-map, complement | Google, Amazon, Meta, Apple, Microsoft |
+| Difficulty | Category          | Tags                        | Companies                              |
+| ---------- | ----------------- | --------------------------- | -------------------------------------- |
+| Easy       | Array, Hash Table | array, hash-map, complement | Google, Amazon, Meta, Apple, Microsoft |
 
 **LeetCode**: [1. Two Sum](https://leetcode.com/problems/two-sum/)
 **Similar Problems**: 3Sum, 4Sum, Two Sum II - Input Array Is Sorted
@@ -21,19 +21,20 @@ You can return the answer in any order.
 
 ## Constraints
 
-| Constraint | Value | Implication |
-|------------|-------|-------------|
-| Array length | `2 <= nums.length <= 10^4` | O(n²) acceptable, O(n) preferred |
-| Value range | `-10^9 <= nums[i] <= 10^9` | Standard number type works |
-| Target range | `-10^9 <= target <= 10^9` | Watch for edge cases with large sums |
-| Solution | Exactly one solution exists | No need to handle "not found" |
-| Element reuse | Cannot use same element twice | `nums[i] + nums[i]` is invalid |
+| Constraint    | Value                         | Implication                          |
+| ------------- | ----------------------------- | ------------------------------------ |
+| Array length  | `2 <= nums.length <= 10^4`    | O(n²) acceptable, O(n) preferred     |
+| Value range   | `-10^9 <= nums[i] <= 10^9`    | Standard number type works           |
+| Target range  | `-10^9 <= target <= 10^9`     | Watch for edge cases with large sums |
+| Solution      | Exactly one solution exists   | No need to handle "not found"        |
+| Element reuse | Cannot use same element twice | `nums[i] + nums[i]` is invalid       |
 
 ---
 
 ## Examples
 
 ### Example 1: Basic Case
+
 ```
 Input: nums = [2, 7, 11, 15], target = 9
 Output: [0, 1]
@@ -41,6 +42,7 @@ Explanation: nums[0] + nums[1] = 2 + 7 = 9, so we return [0, 1]
 ```
 
 ### Example 2: Solution Not at Beginning
+
 ```
 Input: nums = [3, 2, 4], target = 6
 Output: [1, 2]
@@ -48,6 +50,7 @@ Explanation: nums[1] + nums[2] = 2 + 4 = 6
 ```
 
 ### Example 3: Duplicate Values
+
 ```
 Input: nums = [3, 3], target = 6
 Output: [0, 1]
@@ -55,6 +58,7 @@ Explanation: Both 3s at different indices sum to 6
 ```
 
 ### Edge Cases to Consider
+
 - **Negative numbers**: `[-1, -2, -3, -4, -5], target = -8` → `[2, 4]`
 - **Zero in array**: `[0, 4, 3, 0], target = 0` → `[0, 3]`
 - **Mixed signs**: `[-3, 4, 3, 90], target = 0` → `[0, 2]`
@@ -101,11 +105,13 @@ Do you need to build the entire map first, then search? What if you check for th
 **Intuition**: Check every possible pair of numbers to see if they sum to target.
 
 **Algorithm**:
+
 1. For each element at index `i` (from 0 to n-2)
 2. For each element at index `j` (from i+1 to n-1)
 3. If `nums[i] + nums[j] === target`, return `[i, j]`
 
 **Complexity**:
+
 - **Time**: O(n²) - nested loops checking all pairs
 - **Space**: O(1) - no extra data structures
 
@@ -118,11 +124,13 @@ Do you need to build the entire map first, then search? What if you check for th
 **Intuition**: Trade space for time. Use a hash map to store all numbers first, then search for complements.
 
 **Algorithm**:
+
 1. First pass: Build a map of `{value → index}` for all elements
 2. Second pass: For each number, check if `target - num` exists in map
 3. Ensure you don't use the same element twice (check indices)
 
 **Complexity**:
+
 - **Time**: O(n) - two linear passes
 - **Space**: O(n) - hash map stores up to n elements
 
@@ -135,6 +143,7 @@ Do you need to build the entire map first, then search? What if you check for th
 **Intuition**: We don't need to build the entire map first. While iterating, if the complement exists, it must have been added earlier. This naturally prevents using the same element twice.
 
 **Algorithm**:
+
 1. Create an empty hash map
 2. For each element at index `i`:
    - Calculate complement = `target - nums[i]`
@@ -146,6 +155,7 @@ Do you need to build the entire map first, then search? What if you check for th
 When we encounter the second number of a valid pair, the first number is already in our map (added in a previous iteration). We never add the current number before checking, so we can't match an element with itself.
 
 **Complexity**:
+
 - **Time**: O(n) - single pass through array
 - **Space**: O(n) - hash map stores up to n elements
 
@@ -236,7 +246,7 @@ With `[3, 3]` and target `6`, a two-pass approach needs care:
 // WRONG: Overwrites first 3's index
 const map = new Map()
 for (let i = 0; i < nums.length; i++) {
-  map.set(nums[i], i)  // {3: 1} - first 3 lost!
+  map.set(nums[i], i) // {3: 1} - first 3 lost!
 }
 
 // The one-pass approach naturally handles this
@@ -249,6 +259,7 @@ for (let i = 0; i < nums.length; i++) {
 ### Q1: What if the array is sorted?
 
 Use the **two-pointer technique**:
+
 - Start with pointers at beginning and end
 - If sum < target, move left pointer right
 - If sum > target, move right pointer left
@@ -257,6 +268,7 @@ Use the **two-pointer technique**:
 ### Q2: What if there are multiple valid pairs?
 
 Return all pairs using a modified approach:
+
 - Use a frequency map
 - For each number, count how many complements exist
 - Handle the case where `num === complement` carefully
@@ -264,6 +276,7 @@ Return all pairs using a modified approach:
 ### Q3: What if we need to return the values instead of indices?
 
 Simpler! Just use a Set instead of Map:
+
 ```typescript
 const seen = new Set<number>()
 for (const num of nums) {
@@ -282,13 +295,13 @@ for (const num of nums) {
 
 ## Related Problems
 
-| Problem | Relationship |
-|---------|--------------|
-| [15. 3Sum](https://leetcode.com/problems/3sum/) | Extension: find three numbers that sum to 0 |
-| [167. Two Sum II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | Sorted array variant - use two pointers |
-| [170. Two Sum III](https://leetcode.com/problems/two-sum-iii-data-structure-design/) | Design a data structure |
-| [653. Two Sum IV - BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/) | BST variant |
-| [1. Two Sum](https://leetcode.com/problems/two-sum/) | This problem |
+| Problem                                                                              | Relationship                                |
+| ------------------------------------------------------------------------------------ | ------------------------------------------- |
+| [15. 3Sum](https://leetcode.com/problems/3sum/)                                      | Extension: find three numbers that sum to 0 |
+| [167. Two Sum II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)   | Sorted array variant - use two pointers     |
+| [170. Two Sum III](https://leetcode.com/problems/two-sum-iii-data-structure-design/) | Design a data structure                     |
+| [653. Two Sum IV - BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)    | BST variant                                 |
+| [1. Two Sum](https://leetcode.com/problems/two-sum/)                                 | This problem                                |
 
 ---
 

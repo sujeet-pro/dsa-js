@@ -2,6 +2,8 @@
 
 This document provides guidelines for generating **exhaustive** unit tests for Data Structures and Algorithms implementations. Tests must cover all corner cases and validate correctness across multiple implementations.
 
+---
+
 ## Core Principles
 
 1. **Exhaustive Coverage**: Cover ALL edge cases, corner cases, and boundary conditions
@@ -11,19 +13,14 @@ This document provides guidelines for generating **exhaustive** unit tests for D
 
 ---
 
-## Test File Types
+## Test File Structure
 
-### 1. Problem Tests (`src/problems/<name>/<name>.test.ts`)
-
-Tests both solution and practice implementations:
+All problem tests follow this pattern:
 
 ```typescript
 import { expect } from 'vitest'
 import { testImplementations } from '../../test-utils/test-implementations.ts'
-import {
-  problemName as solutionImpl,
-  type ProblemFn,
-} from './problem-name.solution.ts'
+import { problemName as solutionImpl, type ProblemFn } from './problem-name.solution.ts'
 import { problemName as practiceImpl } from './problem-name.practise.ts'
 
 const implementations = {
@@ -32,26 +29,6 @@ const implementations = {
 }
 
 testImplementations<ProblemFn>('problemName', implementations, (testEach) => {
-  // Tests here
-})
-```
-
-### 2. Course Tests (`src/course-*/<name>.test.ts`)
-
-Tests multiple implementations from a single file:
-
-```typescript
-import { expect } from 'vitest'
-import { testImplementations } from '../../test-utils/test-implementations.ts'
-import {
-  impl1,
-  impl2,
-  type ImplFn,
-} from './implementation.ts'
-
-const implementations = { impl1, impl2 }
-
-testImplementations<ImplFn>('implName', implementations, (testEach) => {
   // Tests here
 })
 ```
@@ -75,43 +52,7 @@ Before writing tests for any DSA problem, you MUST:
 - [ ] What are the boundary conditions (empty input, single element, etc.)?
 - [ ] Are there special values to test (0, negative, MAX_SAFE_INTEGER)?
 
-## Multi-Implementation Testing Pattern
-
-Use the `testImplementations` utility for all algorithm tests.
-
-### Required Imports
-
-```typescript
-import { expect } from 'vitest'
-import { testImplementations } from '../../test-utils/test-implementations.ts'
-import {
-  impl1,
-  impl2,
-  impl3,
-  type AlgorithmFn,
-} from './algorithm.ts'
-```
-
-### Test File Structure
-
-```typescript
-import { expect } from 'vitest'
-import { testImplementations } from '../../test-utils/test-implementations.ts'
-import {
-  twoSum1,
-  twoSum2,
-  type TwoSumFn,
-} from './two-sum.ts'
-
-const implementations = {
-  twoSum1,
-  twoSum2,
-}
-
-testImplementations<TwoSumFn>('twoSum', implementations, (testEach) => {
-  // Test cases here
-})
-```
+---
 
 ## Test Case Categories (MUST Include All)
 
@@ -146,15 +87,15 @@ testEach('should handle two elements', (fn) => {
 ```typescript
 testEach('should handle maximum array size', (fn) => {
   const largeArray = Array.from({ length: 10000 }, (_, i) => i)
-  expect(fn(largeArray, /* target */)).toBe(/* expected */)
+  expect(fn(largeArray /* target */)).toBe(/* expected */)
 })
 
 testEach('should handle minimum values', (fn) => {
-  expect(fn([Number.MIN_SAFE_INTEGER, 1], /* target */)).toBe(/* expected */)
+  expect(fn([Number.MIN_SAFE_INTEGER, 1] /* target */)).toBe(/* expected */)
 })
 
 testEach('should handle maximum values', (fn) => {
-  expect(fn([Number.MAX_SAFE_INTEGER, -1], /* target */)).toBe(/* expected */)
+  expect(fn([Number.MAX_SAFE_INTEGER, -1] /* target */)).toBe(/* expected */)
 })
 ```
 
@@ -243,6 +184,8 @@ testEach('should handle large input efficiently', (fn) => {
 })
 ```
 
+---
+
 ## Problem-Specific Test Cases
 
 ### Array Problems
@@ -304,32 +247,66 @@ testEach('should handle large input efficiently', (fn) => {
 - Very long list
 - Duplicate values
 
+---
+
 ## Test Organization
 
 ### Grouping Related Tests
 
 ```typescript
 testImplementations<BinarySearchFn>('binarySearch', implementations, (testEach) => {
-  // Basic functionality
-  testEach('should find element in sorted array', (fn) => { /* ... */ })
-  testEach('should find first element', (fn) => { /* ... */ })
-  testEach('should find last element', (fn) => { /* ... */ })
-  
-  // Edge cases
-  testEach('should return -1 for empty array', (fn) => { /* ... */ })
-  testEach('should handle single element - found', (fn) => { /* ... */ })
-  testEach('should handle single element - not found', (fn) => { /* ... */ })
-  
-  // Boundary conditions
-  testEach('should handle large array', (fn) => { /* ... */ })
-  testEach('should handle MAX_SAFE_INTEGER', (fn) => { /* ... */ })
-  
-  // Not found cases
-  testEach('should return -1 when target < all elements', (fn) => { /* ... */ })
-  testEach('should return -1 when target > all elements', (fn) => { /* ... */ })
-  testEach('should return -1 when target between elements', (fn) => { /* ... */ })
+  // ============================================================
+  // BASIC FUNCTIONALITY
+  // ============================================================
+  testEach('should find element in sorted array', (fn) => {
+    /* ... */
+  })
+  testEach('should find first element', (fn) => {
+    /* ... */
+  })
+  testEach('should find last element', (fn) => {
+    /* ... */
+  })
+
+  // ============================================================
+  // EDGE CASES
+  // ============================================================
+  testEach('should return -1 for empty array', (fn) => {
+    /* ... */
+  })
+  testEach('should handle single element - found', (fn) => {
+    /* ... */
+  })
+  testEach('should handle single element - not found', (fn) => {
+    /* ... */
+  })
+
+  // ============================================================
+  // BOUNDARY CONDITIONS
+  // ============================================================
+  testEach('should handle large array', (fn) => {
+    /* ... */
+  })
+  testEach('should handle MAX_SAFE_INTEGER', (fn) => {
+    /* ... */
+  })
+
+  // ============================================================
+  // NOT FOUND CASES
+  // ============================================================
+  testEach('should return -1 when target < all elements', (fn) => {
+    /* ... */
+  })
+  testEach('should return -1 when target > all elements', (fn) => {
+    /* ... */
+  })
+  testEach('should return -1 when target between elements', (fn) => {
+    /* ... */
+  })
 })
 ```
+
+---
 
 ## Rules for LLMs
 
@@ -349,98 +326,3 @@ testImplementations<BinarySearchFn>('binarySearch', implementations, (testEach) 
 3. **NEVER** define function types in test files
 4. **NEVER** use hardcoded magic numbers without explanation
 5. **NEVER** skip performance tests for algorithms with complexity requirements
-
-## Example: Complete Test File
-
-```typescript
-import { expect } from 'vitest'
-import { testImplementations } from '../../test-utils/test-implementations.ts'
-import {
-  binarySearch1,
-  binarySearch2,
-  type BinarySearchFn,
-} from './binary-search.ts'
-
-const implementations = {
-  binarySearch1,
-  binarySearch2,
-}
-
-testImplementations<BinarySearchFn>('binarySearch', implementations, (testEach) => {
-  // === Basic Functionality ===
-  testEach('should find element at beginning', (fn) => {
-    expect(fn([1, 2, 3, 4, 5], 1)).toBe(0)
-  })
-
-  testEach('should find element in middle', (fn) => {
-    expect(fn([1, 2, 3, 4, 5], 3)).toBe(2)
-  })
-
-  testEach('should find element at end', (fn) => {
-    expect(fn([1, 2, 3, 4, 5], 5)).toBe(4)
-  })
-
-  // === Edge Cases ===
-  testEach('should return -1 for empty array', (fn) => {
-    expect(fn([], 5)).toBe(-1)
-  })
-
-  testEach('should find in single element array', (fn) => {
-    expect(fn([42], 42)).toBe(0)
-  })
-
-  testEach('should return -1 for single element not found', (fn) => {
-    expect(fn([42], 10)).toBe(-1)
-  })
-
-  testEach('should handle two elements - find first', (fn) => {
-    expect(fn([1, 2], 1)).toBe(0)
-  })
-
-  testEach('should handle two elements - find second', (fn) => {
-    expect(fn([1, 2], 2)).toBe(1)
-  })
-
-  // === Not Found Cases ===
-  testEach('should return -1 when target < min', (fn) => {
-    expect(fn([10, 20, 30], 5)).toBe(-1)
-  })
-
-  testEach('should return -1 when target > max', (fn) => {
-    expect(fn([10, 20, 30], 35)).toBe(-1)
-  })
-
-  testEach('should return -1 when target between elements', (fn) => {
-    expect(fn([10, 20, 30], 15)).toBe(-1)
-  })
-
-  // === Special Values ===
-  testEach('should handle negative numbers', (fn) => {
-    expect(fn([-10, -5, 0, 5, 10], -5)).toBe(1)
-  })
-
-  testEach('should handle zero', (fn) => {
-    expect(fn([-2, -1, 0, 1, 2], 0)).toBe(2)
-  })
-
-  testEach('should handle large numbers', (fn) => {
-    expect(fn([1, Number.MAX_SAFE_INTEGER], Number.MAX_SAFE_INTEGER)).toBe(1)
-  })
-
-  // === Duplicates ===
-  testEach('should find one of duplicates', (fn) => {
-    const result = fn([1, 2, 2, 2, 3], 2)
-    expect(result).toBeGreaterThanOrEqual(1)
-    expect(result).toBeLessThanOrEqual(3)
-  })
-
-  // === Performance ===
-  testEach('should handle large sorted array efficiently', (fn) => {
-    const size = 1000000
-    const arr = Array.from({ length: size }, (_, i) => i * 2) // [0, 2, 4, ...]
-    expect(fn(arr, size * 2 - 2)).toBe(size - 1) // Find last element
-    expect(fn(arr, 0)).toBe(0) // Find first element
-    expect(fn(arr, size)).toBe(size / 2) // Find middle element
-  })
-})
-```

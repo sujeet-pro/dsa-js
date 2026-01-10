@@ -11,15 +11,17 @@ This is a **Data Structures and Algorithms practice repository** focused on perf
 When the user's prompt contains **"Generate problem"** or **"Generate a problem"**, execute the complete problem generation workflow:
 
 1. **Research** the problem on LeetCode/HackerRank/GeeksforGeeks
-2. **Create** the folder `src/problems/<problem-name>/` with:
+2. **Create** the folder `problems/<problem-name>/` with:
    - `README.md` - Complete problem documentation with hints, approaches, examples
    - `<problem-name>.practise.ts` - Empty typed function for user to implement
    - `<problem-name>.solution.ts` - Heavily commented optimal solution
    - `<problem-name>.test.ts` - Exhaustive tests (15-20+ cases)
 3. **Run tests** to verify the solution works
 4. **Fix** any issues before completing
+5. **Update** root `README.md` with link to the new problem
 
 **Example prompts:**
+
 - "Generate problem for Two Sum"
 - "Generate a problem for Binary Search"
 - "Generate problem: Merge Intervals"
@@ -32,27 +34,26 @@ See `docs-llms/QUESTION_GENERATION.md` for complete workflow details.
 
 **ALWAYS read the relevant documentation before any task:**
 
-| Task | Documentation |
-|------|---------------|
+| Task             | Documentation                      |
+| ---------------- | ---------------------------------- |
 | Generate problem | `docs-llms/QUESTION_GENERATION.md` |
-| Write code | `docs-llms/CODE_GENERATION.md` |
-| Write tests | `docs-llms/TESTING.md` |
+| Write code       | `docs-llms/CODE_GENERATION.md`     |
+| Write tests      | `docs-llms/TESTING.md`             |
 
 ---
 
 ## Repository Structure
 
 ```
-src/
-├── problems/                  # Generated problem packages
-│   └── <problem-name>/
-│       ├── README.md          # Problem documentation
-│       ├── *.practise.ts      # Empty implementation for practice
-│       ├── *.solution.ts      # Commented solution
-│       └── *.test.ts          # Exhaustive tests
-├── course-fem-algorithms/     # Course-based implementations
-├── test-utils/                # Testing utilities
-└── types/                     # Shared type definitions
+problems/                      # Generated problem packages
+  <problem-name>/
+    README.md                  # Problem documentation
+    *.practise.ts              # Empty implementation for practice
+    *.solution.ts              # Commented solution
+    *.test.ts                  # Exhaustive tests
+test-utils/                    # Testing utilities
+notes/                         # Learning notes and references
+docs-llms/                     # Documentation for AI agents
 ```
 
 ---
@@ -93,7 +94,7 @@ testImplementations<FnType>('name', implementations, (testEach) => {
 
 ```bash
 npm test                           # Run all tests
-npm test -- src/problems/two-sum   # Run specific tests
+npm test -- problems/two-sum       # Run specific tests
 npx tsc --noEmit                   # Type check
 ```
 
@@ -108,3 +109,4 @@ Before completing any problem generation:
 - [ ] Solution tests pass (at least 15 test cases)
 - [ ] Solution file has extensive comments
 - [ ] README has all sections (hints, approaches, examples, etc.)
+- [ ] Root README.md updated with link to new problem

@@ -20,6 +20,7 @@ When the user's prompt contains **"Generate problem"** or **"Generate a problem"
 4. **Fix** any issues before completing
 
 **Example prompts:**
+
 - "Generate problem for Two Sum"
 - "Generate a problem for Binary Search"
 - "Generate problem: Merge Intervals"
@@ -32,11 +33,11 @@ See `docs-llms/QUESTION_GENERATION.md` for complete workflow details.
 
 **ALWAYS read the relevant documentation before any task:**
 
-| Task | Documentation |
-|------|---------------|
+| Task             | Documentation                      |
+| ---------------- | ---------------------------------- |
 | Generate problem | `docs-llms/QUESTION_GENERATION.md` |
-| Write code | `docs-llms/CODE_GENERATION.md` |
-| Write tests | `docs-llms/TESTING.md` |
+| Write code       | `docs-llms/CODE_GENERATION.md`     |
+| Write tests      | `docs-llms/TESTING.md`             |
 
 ---
 

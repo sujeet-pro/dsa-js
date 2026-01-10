@@ -1,8 +1,8 @@
 # Two Crystal Balls
 
-| Difficulty | Category | Tags | Companies |
-|------------|----------|------|-----------|
-| Medium | Search | sqrt-decomposition, optimization, binary-search-variant | Google, Amazon |
+| Difficulty | Category | Tags                                                    | Companies      |
+| ---------- | -------- | ------------------------------------------------------- | -------------- |
+| Medium     | Search   | sqrt-decomposition, optimization, binary-search-variant | Google, Amazon |
 
 **Source**: [Frontend Masters - The Last Algorithms Course You'll Need](https://frontendmasters.com/courses/algorithms/two-crystal-balls-problem/)
 **Similar Problems**: Egg Drop Problem, First Bad Version, Search Insert Position
@@ -14,6 +14,7 @@
 Given two identical crystal balls that will break if dropped from a high enough distance, determine the **exact spot** (floor/height) at which they will break in the **most optimized way**.
 
 You are given a building with `n` floors represented as a boolean array `breaks[]` where:
+
 - `breaks[i] = false` means the ball will NOT break when dropped from floor `i`
 - `breaks[i] = true` means the ball will break when dropped from floor `i`
 
@@ -25,18 +26,19 @@ The array is structured such that all `false` values come before all `true` valu
 
 ## Constraints
 
-| Constraint | Value | Implication |
-|------------|-------|-------------|
-| Array length | `1 <= breaks.length <= 10^6` | Need sub-linear or O(n) solution |
-| Crystal balls | Exactly 2 | Can only afford one "wasted" break |
-| Array structure | Monotonic (all false, then all true) | Classic search problem |
-| Values | `boolean[]` | false = safe, true = breaks |
+| Constraint      | Value                                | Implication                        |
+| --------------- | ------------------------------------ | ---------------------------------- |
+| Array length    | `1 <= breaks.length <= 10^6`         | Need sub-linear or O(n) solution   |
+| Crystal balls   | Exactly 2                            | Can only afford one "wasted" break |
+| Array structure | Monotonic (all false, then all true) | Classic search problem             |
+| Values          | `boolean[]`                          | false = safe, true = breaks        |
 
 ---
 
 ## Examples
 
 ### Example 1: Ball Breaks Mid-Array
+
 ```
 Input: breaks = [false, false, false, true, true, true]
 Output: 3
@@ -44,6 +46,7 @@ Explanation: Floor 3 is the first floor where the ball breaks
 ```
 
 ### Example 2: Ball Breaks at First Floor
+
 ```
 Input: breaks = [true, true, true, true]
 Output: 0
@@ -51,6 +54,7 @@ Explanation: Ball breaks at the very first floor
 ```
 
 ### Example 3: Ball Never Breaks
+
 ```
 Input: breaks = [false, false, false, false]
 Output: -1
@@ -58,6 +62,7 @@ Explanation: Ball doesn't break at any floor
 ```
 
 ### Example 4: Ball Breaks at Last Floor
+
 ```
 Input: breaks = [false, false, false, false, true]
 Output: 4
@@ -65,6 +70,7 @@ Explanation: Ball only breaks at the last floor
 ```
 
 ### Edge Cases to Consider
+
 - **Empty array**: Should return `-1`
 - **Single element array**: `[true]` → `0`, `[false]` → `-1`
 - **All true**: First breaking point is index `0`
@@ -112,11 +118,13 @@ If you jump by `k` floors, worst case is `n/k` jumps + `k` linear searches. To m
 **Intuition**: Drop from each floor starting from the bottom until it breaks.
 
 **Algorithm**:
+
 1. Start from floor 0
 2. Drop ball from each floor sequentially
 3. Return the first floor where it breaks
 
 **Complexity**:
+
 - **Time**: O(n) - may need to check every floor
 - **Space**: O(1) - no extra space needed
 
@@ -131,11 +139,13 @@ If you jump by `k` floors, worst case is `n/k` jumps + `k` linear searches. To m
 **Intuition**: Use binary search since the array is sorted (all false then all true).
 
 **Algorithm**:
+
 1. Drop from middle floor
 2. If breaks, search lower half with remaining ball (linear)
 3. If doesn't break, search upper half
 
 **Complexity**:
+
 - **Time**: O(n) - Binary search is O(log n) for finding, but if ball breaks mid-array, linear search on half = O(n/2) = O(n)
 - **Space**: O(1)
 
@@ -148,11 +158,13 @@ If you jump by `k` floors, worst case is `n/k` jumps + `k` linear searches. To m
 **Intuition**: Jump by √n floors with the first ball. If it breaks, linear search the previous √n floors with the second ball. This balances the jump phase and search phase.
 
 **Algorithm**:
+
 1. Calculate jump size: `k = √n`
 2. **Phase 1 (Jump)**: Drop first ball every `k` floors until it breaks
 3. **Phase 2 (Linear)**: Go back `k` floors and linear search with second ball
 
 **Why √n?**
+
 - If we jump by `k` floors, we make at most `n/k` jumps
 - If ball breaks, we linear search at most `k` floors
 - Total operations: `n/k + k`
@@ -160,6 +172,7 @@ If you jump by `k` floors, worst case is `n/k` jumps + `k` linear searches. To m
 - Total: `√n + √n = 2√n = O(√n)`
 
 **Complexity**:
+
 - **Time**: O(√n) - at most √n jumps + √n linear searches
 - **Space**: O(1) - only a few variables
 
@@ -259,7 +272,7 @@ for (let j = 0; j < jumpAmount && i < breaks.length; j++, i++) {
 
 // CORRECT: After going back, i is at the last safe position
 // Need to check from i onwards (i was already checked as safe)
-i -= jumpAmount  // Go back
+i -= jumpAmount // Go back
 for (let j = 0; j <= jumpAmount && i < breaks.length; j++, i++) {
   if (breaks[i]) return i
 }
@@ -285,11 +298,121 @@ for (let j = 0; j < jumpAmount && i < breaks.length; j++, i++) {
 
 ---
 
+## Interview Derivation: How to Arrive at √n
+
+**This section answers: "How would I discover this approach in an interview?"**
+
+This is NOT about proving √n mathematically. It's about the **thought process** that leads you there naturally when solving the problem out loud.
+
+---
+
+### Step 1: Start with What You Know
+
+**You say**: "Let me start with the simplest approach - linear search from floor 1."
+
+```
+Linear search: O(n) time
+```
+
+**Interviewer may ask**: "Can you do better?"
+
+---
+
+### Step 2: Consider Binary Search (and Realize the Problem)
+
+**You say**: "Since it's a sorted array (all false, then all true), binary search comes to mind..."
+
+Then pause and think out loud:
+
+**You say**: "Wait, if I drop from the middle and the ball breaks, I've used one ball. Now I only have one ball left for half the building. With one ball, I must do linear search. So worst case is still O(n/2) = O(n)."
+
+**Key insight to verbalize**: "Binary search fails because using one ball forces me to be conservative with the other."
+
+---
+
+### Step 3: Ask the Right Question
+
+**You say**: "So the problem is: how do I split the search so that BOTH phases are balanced?"
+
+Frame it as an optimization:
+
+- "If I jump by some amount `k`, I'll do about `n/k` jumps"
+- "When the ball breaks, I linear search at most `k` floors"
+- "Total work: `n/k + k`"
+
+---
+
+### Step 4: Find the Optimal Jump Size
+
+**You say**: "I want to minimize `n/k + k`. What value of `k` balances these two terms?"
+
+Two ways to explain this (pick the one you're comfortable with):
+
+**Option A - Intuitive**:
+"I want the jump work and the search work to be equal. If `n/k = k`, then `k² = n`, so `k = √n`."
+
+**Option B - Concrete Example**:
+"For n = 100:
+
+- Jump by 10 → 10 jumps + 10 searches max = 20
+- Jump by 5 → 20 jumps + 5 searches max = 25
+- Jump by 20 → 5 jumps + 20 searches max = 25
+
+10 = √100 gives the best balance."
+
+---
+
+### Step 5: State the Complexity
+
+**You say**: "So with jumps of √n, we do at most √n jumps, then at most √n linear checks. Total: O(√n)."
+
+---
+
+### Complete Interview Script
+
+Here's how a good interview explanation flows:
+
+> "I'll start with linear search - O(n). But we have two balls, so we should leverage that.
+>
+> Binary search seems appealing since the array is sorted, but here's the issue: if my first ball breaks, I'm left with one ball and must linear search the remaining half. Worst case is still O(n).
+>
+> The key insight is that with two balls, I need to balance two phases: the jumping phase and the fallback linear search phase. If I jump by `k` floors, I do `n/k` jumps, and if the ball breaks, I do at most `k` linear searches.
+>
+> To minimize `n/k + k`, I want both terms equal: `n/k = k` gives `k = √n`.
+>
+> So I jump by √n floors at a time. If the ball breaks, I go back √n floors and linear search. Total operations: √n + √n = O(√n)."
+
+---
+
+### Common Interviewer Follow-ups
+
+**Q: "How do you know √n is optimal?"**
+A: "I'm balancing two costs. The total is `n/k + k`. This is minimized when both terms are equal - if jumps cost more than searches, I should jump less; if searches cost more, I should jump more. Equal means `n/k = k`, so `k = √n`."
+
+**Q: "What if you had 3 balls?"**
+A: "Same logic! With 3 balls, I'd have three phases. Jump by `n^(1/3)`, then by `(n^(1/3))^(1/2)` in the second phase. This generalizes to `O(n^(1/k))` with k balls."
+
+**Q: "Can you prove √n is optimal more rigorously?"**
+A: "For minimum of `f(k) = n/k + k`, take derivative: `f'(k) = -n/k² + 1 = 0`, giving `k = √n`. Second derivative is positive, confirming minimum."
+
+---
+
+### Key Interview Tips
+
+1. **Start with brute force** - Shows you can solve the problem before optimizing
+2. **Verbalize why binary search fails** - Shows deep understanding
+3. **Frame as an optimization problem** - "I want to minimize total work"
+4. **Use concrete numbers** - "For n=100, jumping by 10 means..."
+5. **Connect to general pattern** - Mention this is "square root decomposition"
+
+---
+
 ## Follow-up Questions
 
 ### Q1: What if you had k crystal balls instead of 2?
 
 With `k` balls, the optimal strategy changes:
+
 - With 2 balls: Jump by `n^(1/2)` = √n → O(√n)
 - With 3 balls: Jump by `n^(1/3)` → O(n^(1/3))
 - With k balls: Jump by `n^(1/k)` → O(n^(1/k))
@@ -299,12 +422,14 @@ This is the generalized **Egg Drop Problem**.
 ### Q2: What if we wanted to minimize expected drops (average case)?
 
 The √n approach minimizes worst case. For average case:
+
 - If breaks are uniformly distributed, √n is still good
 - If breaks are more likely at certain positions, adaptive strategies help
 
 ### Q3: How does this relate to the Egg Drop Problem?
 
 This is a simplified version of the Egg Drop Problem:
+
 - Egg Drop: Minimize worst-case drops given `k` eggs and `n` floors
 - Two Crystal Balls: Special case with `k = 2`
 - General solution uses dynamic programming
@@ -313,12 +438,12 @@ This is a simplified version of the Egg Drop Problem:
 
 ## Related Problems
 
-| Problem | Relationship |
-|---------|--------------|
-| [887. Super Egg Drop](https://leetcode.com/problems/super-egg-drop/) | General case with k eggs |
-| [278. First Bad Version](https://leetcode.com/problems/first-bad-version/) | Similar pattern, but unlimited "balls" |
+| Problem                                                                             | Relationship                            |
+| ----------------------------------------------------------------------------------- | --------------------------------------- |
+| [887. Super Egg Drop](https://leetcode.com/problems/super-egg-drop/)                | General case with k eggs                |
+| [278. First Bad Version](https://leetcode.com/problems/first-bad-version/)          | Similar pattern, but unlimited "balls"  |
 | [35. Search Insert Position](https://leetcode.com/problems/search-insert-position/) | Finding insertion point in sorted array |
-| [162. Find Peak Element](https://leetcode.com/problems/find-peak-element/) | Binary search variant |
+| [162. Find Peak Element](https://leetcode.com/problems/find-peak-element/)          | Binary search variant                   |
 
 ---
 
