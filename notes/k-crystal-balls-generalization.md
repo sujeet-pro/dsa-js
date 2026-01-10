@@ -68,9 +68,9 @@ With three balls, we have two "exploratory" breaks before falling back to linear
 
 Set `n/j₁ = j₁/j₂ = j₂ = x`
 
-From `j₂ = x`: j₂ = x
-From `j₁/j₂ = x`: j₁ = x · j₂ = x²
-From `n/j₁ = x`: n = x · j₁ = x · x² = x³
+- From `j₂ = x`: j₂ = x
+- From `j₁/j₂ = x`: j₁ = x · j₂ = x²
+- From `n/j₁ = x`: n = x · j₁ = x · x² = x³
 
 Therefore: `x = n^(1/3)`
 

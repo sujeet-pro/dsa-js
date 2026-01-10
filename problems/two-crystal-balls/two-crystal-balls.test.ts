@@ -1,11 +1,12 @@
 import { expect } from 'vitest'
 import { testImplementations } from '../../test-utils/test-implementations.ts'
 import { twoCrystalBalls as solutionImpl, type TwoCrystalBallsFn } from './two-crystal-balls.solution.ts'
-import { twoCrystalBalls as practiceImpl } from './two-crystal-balls.practise.ts'
+import { twoCrystalBalls as practiceImpl, twoCrystalBalls2 } from './two-crystal-balls.practise.ts'
 
 const implementations = {
   solution: solutionImpl,
   practice: practiceImpl,
+  practice2: twoCrystalBalls2,
 }
 
 /**

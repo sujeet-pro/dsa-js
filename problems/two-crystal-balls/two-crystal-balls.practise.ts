@@ -22,7 +22,29 @@ export type TwoCrystalBallsFn = (breaks: boolean[]) => number
  * - Array is monotonic: all false values come before all true values
  * - Return the index of the first true, or -1 if all false
  */
-export const twoCrystalBalls: TwoCrystalBallsFn = (_breaks) => {
-  // TODO: Implement your solution
-  throw new Error('Not implemented')
+export const twoCrystalBalls: TwoCrystalBallsFn = (breaks) => {
+  const jump = Math.floor(Math.sqrt(breaks.length))
+  let lastJump = 0 - jump
+  let nextJump = lastJump + jump // 0
+  while (nextJump < breaks.length && breaks[nextJump] === false) {
+    lastJump = nextJump
+    nextJump += jump
+  }
+  // linear search
+  for (let i = lastJump; i < breaks.length; i += 1) {
+    if (breaks[i]) return i
+  }
+  return -1
+}
+
+export const twoCrystalBalls2: TwoCrystalBallsFn = (breaks) => {
+  const jump = Math.floor(Math.sqrt(breaks.length))
+  let lastNonBreakingIdx = 0
+  for (let i = 0; i < breaks.length && breaks[i] === false; i += jump) {
+    lastNonBreakingIdx = i
+  }
+  for (let i = lastNonBreakingIdx; i < breaks.length; i += 1) {
+    if (breaks[i]) return i
+  }
+  return -1
 }
