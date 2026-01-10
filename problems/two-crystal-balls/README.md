@@ -1,11 +1,18 @@
 # Two Crystal Balls
 
-| Difficulty | Category | Tags                                                    | Companies      |
-| ---------- | -------- | ------------------------------------------------------- | -------------- |
-| Medium     | Search   | sqrt-decomposition, optimization, binary-search-variant | Google, Amazon |
+| Property   | Value                                                   |
+| ---------- | ------------------------------------------------------- |
+| Difficulty | Medium                                                  |
+| Category   | Search                                                  |
+| Tags       | sqrt-decomposition, optimization, binary-search-variant |
+| Companies  | Google, Amazon                                          |
 
 **Source**: [Frontend Masters - The Last Algorithms Course You'll Need](https://frontendmasters.com/courses/algorithms/two-crystal-balls-problem/)
-**Similar Problems**: Egg Drop Problem, First Bad Version, Search Insert Position
+
+**Similar Problems**:
+- [887. Super Egg Drop](https://leetcode.com/problems/super-egg-drop/)
+- [278. First Bad Version](https://leetcode.com/problems/first-bad-version/)
+- [35. Search Insert Position](https://leetcode.com/problems/search-insert-position/)
 
 ---
 

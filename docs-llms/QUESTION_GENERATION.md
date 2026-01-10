@@ -313,19 +313,31 @@ After all tests pass, add the new problem to the root `/README.md` problems tabl
 
 1. Open `/README.md`
 2. Find the "## Problems" section with the table
-3. Add a new row with:
-   - **#**: Increment from the last problem number
-   - **Problem**: `[Problem Name](problems/<problem-name>/)`
-   - **Difficulty**: Easy/Medium/Hard
-   - **Category**: Main category (e.g., Array, Hash Table, Searching)
-   - **Tags**: Key algorithmic tags
+3. Add a new row with these columns:
+
+| Column       | Description                                                                 |
+| ------------ | --------------------------------------------------------------------------- |
+| `#`          | Increment from the last problem number                                      |
+| `Problem`    | `[Problem Name](problems/<problem-name>/)` - linked to problem folder       |
+| `Difficulty` | Easy, Medium, or Hard                                                       |
+| `Category`   | Primary category (e.g., Array, Hash Table, Searching, Tree, Graph)          |
+| `Tags`       | 2-3 most relevant algorithmic tags (keep concise for 200+ problems scaling) |
+
 4. Update the summary line with new counts
 
-**Example row to add:**
+**Root README Table Format:**
 
 ```markdown
-| 4 | [Merge Intervals](problems/merge-intervals/) | Medium | Array, Sorting | intervals, sorting |
+| #   | Problem                                      | Difficulty | Category       | Tags                 |
+| --- | -------------------------------------------- | ---------- | -------------- | -------------------- |
+| 4   | [Merge Intervals](problems/merge-intervals/) | Medium     | Array, Sorting | intervals, merging   |
 ```
+
+**Tag Guidelines (for scalability with 200+ problems):**
+- Use only 2-3 most relevant tags per problem
+- Prefer short, commonly-used tag names
+- Focus on algorithmic technique, not problem category (category column handles that)
+- Examples: `hash-map`, `two-pointers`, `sliding-window`, `dp`, `backtracking`, `greedy`
 
 **Example summary update:**
 
@@ -366,12 +378,19 @@ Before generating any files, you MUST research:
 ````markdown
 # [Problem Name]
 
-| Difficulty         | Category   | Tags   | Companies   |
-| ------------------ | ---------- | ------ | ----------- |
-| [Easy/Medium/Hard] | [Category] | [tags] | [Companies] |
+| Property   | Value                |
+| ---------- | -------------------- |
+| Difficulty | [Easy/Medium/Hard]   |
+| Category   | [Category]           |
+| Tags       | [tags]               |
+| Companies  | [Companies]          |
 
 **LeetCode**: [#. Problem Name](url)
-**Similar Problems**: [Related problem links]
+
+**Similar Problems**:
+- [Related Problem 1](url)
+- [Related Problem 2](url)
+- [Related Problem 3](url)
 
 ## Problem Statement
 

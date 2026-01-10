@@ -1,11 +1,18 @@
 # Two Sum
 
-| Difficulty | Category          | Tags                        | Companies                              |
-| ---------- | ----------------- | --------------------------- | -------------------------------------- |
-| Easy       | Array, Hash Table | array, hash-map, complement | Google, Amazon, Meta, Apple, Microsoft |
+| Property   | Value                                        |
+| ---------- | -------------------------------------------- |
+| Difficulty | Easy                                         |
+| Category   | Array, Hash Table                            |
+| Tags       | array, hash-map, complement                  |
+| Companies  | Google, Amazon, Meta, Apple, Microsoft       |
 
 **LeetCode**: [1. Two Sum](https://leetcode.com/problems/two-sum/)
-**Similar Problems**: 3Sum, 4Sum, Two Sum II - Input Array Is Sorted
+
+**Similar Problems**:
+- [15. 3Sum](https://leetcode.com/problems/3sum/)
+- [18. 4Sum](https://leetcode.com/problems/4sum/)
+- [167. Two Sum II - Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
 
 ---
 
