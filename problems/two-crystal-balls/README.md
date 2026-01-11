@@ -10,6 +10,7 @@
 **Source**: [Frontend Masters - The Last Algorithms Course You'll Need](https://frontendmasters.com/courses/algorithms/two-crystal-balls-problem/)
 
 **Similar Problems**:
+
 - [887. Super Egg Drop](https://leetcode.com/problems/super-egg-drop/)
 - [278. First Bad Version](https://leetcode.com/problems/first-bad-version/)
 - [35. Search Insert Position](https://leetcode.com/problems/search-insert-position/)

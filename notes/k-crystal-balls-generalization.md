@@ -29,10 +29,12 @@ With only one ball, we can't risk breaking it early. We must check floors sequen
 With two balls, we can afford one "exploratory" break.
 
 **Strategy**:
+
 1. Jump by some interval `j` with the first ball
 2. When it breaks, linear search the previous `j` floors with the second ball
 
 **Analysis**:
+
 - Number of jumps: `n/j`
 - Linear search after break: `j` (worst case)
 - Total drops: `n/j + j`
@@ -54,11 +56,13 @@ Solve: `j² = n` → `j = √n = n^(1/2)`
 With three balls, we have two "exploratory" breaks before falling back to linear search.
 
 **Strategy**:
+
 1. Jump by interval `j₁` with the first ball
 2. When it breaks, jump by interval `j₂` within that segment with the second ball
 3. When it breaks, linear search with the third ball
 
 **Analysis**:
+
 - First phase jumps: `n/j₁`
 - Second phase jumps: `j₁/j₂`
 - Linear search: `j₂`
@@ -75,6 +79,7 @@ Set `n/j₁ = j₁/j₂ = j₂ = x`
 Therefore: `x = n^(1/3)`
 
 **Jump sizes**:
+
 - j₁ = x² = n^(2/3)
 - j₂ = x = n^(1/3)
 
@@ -89,6 +94,7 @@ Therefore: `x = n^(1/3)`
 ### The Strategy
 
 With `k` balls, we create `k` phases:
+
 1. Phase 1: Jump by `j₁` until first ball breaks
 2. Phase 2: Within that segment, jump by `j₂` until second ball breaks
 3. ...
@@ -123,12 +129,14 @@ j₁ = x^(k-1)
 ```
 
 From the first equation:
+
 ```
 n/j₁ = x
 n = x · j₁ = x · x^(k-1) = x^k
 ```
 
 Therefore:
+
 ```
 x = n^(1/k)
 ```
@@ -155,15 +163,15 @@ For fixed k, this simplifies to **O(n^(1/k))**
 
 ## Summary Table
 
-| Balls (k) | Jump Size      | Worst Case Drops | Complexity   |
-| --------- | -------------- | ---------------- | ------------ |
-| 1         | 1              | n                | O(n)         |
-| 2         | n^(1/2) = √n   | 2√n              | O(√n)        |
-| 3         | n^(1/3) = ∛n   | 3·∛n             | O(n^(1/3))   |
-| 4         | n^(1/4) = ∜n   | 4·∜n             | O(n^(1/4))   |
-| k         | n^(1/k)        | k·n^(1/k)        | O(n^(1/k))   |
-| log(n)    | 2              | log(n)·2         | O(log n)     |
-| ∞         | n/2 (binary)   | log₂(n)          | O(log n)     |
+| Balls (k) | Jump Size    | Worst Case Drops | Complexity |
+| --------- | ------------ | ---------------- | ---------- |
+| 1         | 1            | n                | O(n)       |
+| 2         | n^(1/2) = √n | 2√n              | O(√n)      |
+| 3         | n^(1/3) = ∛n | 3·∛n             | O(n^(1/3)) |
+| 4         | n^(1/4) = ∜n | 4·∜n             | O(n^(1/4)) |
+| k         | n^(1/k)      | k·n^(1/k)        | O(n^(1/k)) |
+| log(n)    | 2            | log(n)·2         | O(log n)   |
+| ∞         | n/2 (binary) | log₂(n)          | O(log n)   |
 
 ---
 
@@ -178,6 +186,7 @@ The optimal solution balances the work across all phases. If any phase does more
 Consider the total: `T = a₁ + a₂ + ... + aₖ`
 
 If terms are unequal, we can reduce the maximum by:
+
 - Decreasing the largest term
 - Increasing smaller terms to compensate
 
@@ -189,7 +198,7 @@ More balls = more phases = each phase does less work
 
 ```
 k=1:  [─────────────────────────────────] n drops
-k=2:  [──────√n──────][──────√n──────]   2√n drops  
+k=2:  [──────√n──────][──────√n──────]   2√n drops
 k=3:  [───∛n───][───∛n───][───∛n───]     3∛n drops
 ```
 
@@ -238,11 +247,13 @@ Second derivative test: `f''(j) = 2n/j³ > 0` (confirms minimum)
 ### Generalization
 
 For k balls with function:
+
 ```
 f(j₁, j₂, ..., j_{k-1}) = n/j₁ + j₁/j₂ + ... + j_{k-1}
 ```
 
 Setting partial derivatives to zero and solving the system yields:
+
 ```
 j_i = n^((k-i)/k)
 ```

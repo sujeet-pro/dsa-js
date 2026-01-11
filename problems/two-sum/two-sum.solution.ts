@@ -50,7 +50,7 @@ export const twoSum: TwoSumFn = (nums, target) => {
     // - TypeScript's noUncheckedIndexedAccess makes nums[i] possibly undefined
     // - We know i is always valid since we're iterating within bounds
     // - Alternative: use `for...of` with entries, but index tracking is cleaner here
-    const currentNum = nums[i]! // eslint-disable-line
+    const currentNum = nums[i]!
 
     // ------------------------------------------------------------
     // Calculate the complement we need to find

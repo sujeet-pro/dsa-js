@@ -69,7 +69,7 @@ export const binarySearch: BinarySearchFn = (nums, target) => {
     // - mid is always within bounds: left <= mid <= right
     // - left >= 0 and right < nums.length (maintained by our updates)
 
-    const midValue = nums[mid]! // eslint-disable-line @typescript-eslint/no-non-null-assertion
+    const midValue = nums[mid]!
 
     // ----------------------------------------------------------
     // Compare and decide where to search next

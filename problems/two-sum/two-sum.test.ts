@@ -16,8 +16,8 @@ const isValidTwoSum = (nums: number[], target: number, result: [number, number])
   const [i, j] = result
   if (i < 0 || j < 0 || i >= nums.length || j >= nums.length) return false
   if (i === j) return false
-  // eslint-disable-next-line
-  return nums[i]! + nums[j]! === target
+  const sum = nums[i]! + nums[j]!
+  return sum === target
 }
 
 testImplementations<TwoSumFn>('twoSum', implementations, (testEach) => {

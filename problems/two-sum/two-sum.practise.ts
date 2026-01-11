@@ -25,7 +25,7 @@ export type TwoSumFn = (nums: number[], target: number) => [number, number]
 export const twoSum: TwoSumFn = (nums, target) => {
   const valueIdxMap = new Map<number, number>()
   for (let idx = 0; idx < nums.length; idx += 1) {
-    const num2 = nums[idx]! // eslint-disable-line
+    const num2 = nums[idx]!
     const num1 = target - num2
     const idx1 = valueIdxMap.get(num1)
     if (idx1 !== undefined) {

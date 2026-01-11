@@ -21,7 +21,6 @@ export const binarySearch1: BinarySearchFn = (nums, target) => {
   const startIdx = 0
   const endIdx = nums.length - 1
   // Below line will handle for lenght = 0, 1 (non-matching)
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   if (nums.length === 0 || target < nums[startIdx]! || nums[endIdx]! < target) return -1
   return binarySearchRecursive(nums, target, startIdx, endIdx)
 }
@@ -29,7 +28,7 @@ export const binarySearch1: BinarySearchFn = (nums, target) => {
 function binarySearchRecursive(nums: number[], target: number, startIdx: number, endIdx: number): number {
   if (endIdx < startIdx) return -1
   const midIdx = Math.floor((startIdx + endIdx) / 2)
-  const midVal = nums[midIdx]! // eslint-disable-line @typescript-eslint/no-non-null-assertion
+  const midVal = nums[midIdx]!
   if (midVal === target) return midIdx
   if (target < midVal) return binarySearchRecursive(nums, target, startIdx, midIdx - 1)
   return binarySearchRecursive(nums, target, midIdx + 1, endIdx)
@@ -40,7 +39,7 @@ export const binarySearch2: BinarySearchFn = (nums, target) => {
   let endIdx = nums.length - 1
   while (startIdx <= endIdx) {
     const midIdx = startIdx + Math.floor((endIdx - startIdx) / 2)
-    const midVal = nums[midIdx]! // eslint-disable-line
+    const midVal = nums[midIdx]!
     if (midVal === target) return midIdx
     else if (midVal < target) startIdx = midIdx + 1
     else endIdx = midIdx - 1
@@ -53,7 +52,7 @@ export const binarySearch3: BinarySearchFn = (nums, target) => {
   let endIdx = nums.length // [start, end) ==> Inclusive start Index, Exclusive End Index
   do {
     const midIdx = Math.floor(startIdx + (endIdx - startIdx) / 2)
-    const midVal = nums[midIdx]! // eslint-disable-line
+    const midVal = nums[midIdx]!
     if (midVal === target) return midIdx
     if (midVal < target) startIdx = midIdx + 1
     else endIdx = midIdx

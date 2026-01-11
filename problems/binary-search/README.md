@@ -1,15 +1,16 @@
 # Binary Search
 
-| Property   | Value                                              |
-| ---------- | -------------------------------------------------- |
-| Difficulty | Easy                                               |
-| Category   | Searching                                          |
-| Tags       | `binary-search`, `divide-and-conquer`, `array`     |
-| Companies  | Google, Amazon, Microsoft, Facebook, Apple         |
+| Property   | Value                                          |
+| ---------- | ---------------------------------------------- |
+| Difficulty | Easy                                           |
+| Category   | Searching                                      |
+| Tags       | `binary-search`, `divide-and-conquer`, `array` |
+| Companies  | Google, Amazon, Microsoft, Facebook, Apple     |
 
 **LeetCode**: [704. Binary Search](https://leetcode.com/problems/binary-search/)
 
 **Similar Problems**:
+
 - [35. Search Insert Position](https://leetcode.com/problems/search-insert-position/)
 - [34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
 

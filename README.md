@@ -4,13 +4,14 @@ A comprehensive practice repository for DSA problems with detailed documentation
 
 ## Problems
 
-| #   | Problem                                          | Difficulty | Category          | Tags                              |
-| --- | ------------------------------------------------ | ---------- | ----------------- | --------------------------------- |
-| 1   | [Two Sum](problems/two-sum/)                     | Easy       | Array, Hash Table | hash-map, complement              |
-| 2   | [Binary Search](problems/binary-search/)         | Easy       | Searching         | binary-search, divide-and-conquer |
-| 3   | [Two Crystal Balls](problems/two-crystal-balls/) | Medium     | Search            | sqrt-decomposition, optimization  |
+| #   | Problem                                          | Difficulty | Category          | Tags                                |
+| --- | ------------------------------------------------ | ---------- | ----------------- | ----------------------------------- |
+| 1   | [Two Sum](problems/two-sum/)                     | Easy       | Array, Hash Table | hash-map, complement                |
+| 2   | [Binary Search](problems/binary-search/)         | Easy       | Searching         | binary-search, divide-and-conquer   |
+| 3   | [Two Crystal Balls](problems/two-crystal-balls/) | Medium     | Search            | sqrt-decomposition, optimization    |
+| 4   | [Sorting Algorithms](problems/sorting-algorithms/)| Medium     | Sorting           | comparison-sort, divide-and-conquer |
 
-**Total**: 3 problems | **Easy**: 2 | **Medium**: 1
+**Total**: 4 problems | **Easy**: 2 | **Medium**: 2
 
 ## How to Use
 

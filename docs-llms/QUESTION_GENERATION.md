@@ -328,12 +328,13 @@ After all tests pass, add the new problem to the root `/README.md` problems tabl
 **Root README Table Format:**
 
 ```markdown
-| #   | Problem                                      | Difficulty | Category       | Tags                 |
-| --- | -------------------------------------------- | ---------- | -------------- | -------------------- |
-| 4   | [Merge Intervals](problems/merge-intervals/) | Medium     | Array, Sorting | intervals, merging   |
+| #   | Problem                                      | Difficulty | Category       | Tags               |
+| --- | -------------------------------------------- | ---------- | -------------- | ------------------ |
+| 4   | [Merge Intervals](problems/merge-intervals/) | Medium     | Array, Sorting | intervals, merging |
 ```
 
 **Tag Guidelines (for scalability with 200+ problems):**
+
 - Use only 2-3 most relevant tags per problem
 - Prefer short, commonly-used tag names
 - Focus on algorithmic technique, not problem category (category column handles that)
@@ -378,16 +379,17 @@ Before generating any files, you MUST research:
 ````markdown
 # [Problem Name]
 
-| Property   | Value                |
-| ---------- | -------------------- |
-| Difficulty | [Easy/Medium/Hard]   |
-| Category   | [Category]           |
-| Tags       | [tags]               |
-| Companies  | [Companies]          |
+| Property   | Value              |
+| ---------- | ------------------ |
+| Difficulty | [Easy/Medium/Hard] |
+| Category   | [Category]         |
+| Tags       | [tags]             |
+| Companies  | [Companies]        |
 
 **LeetCode**: [#. Problem Name](url)
 
 **Similar Problems**:
+
 - [Related Problem 1](url)
 - [Related Problem 2](url)
 - [Related Problem 3](url)
